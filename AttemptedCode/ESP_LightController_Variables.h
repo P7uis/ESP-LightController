@@ -25,7 +25,8 @@ int RoofLightSwitch = 12;
 int UnderglowSwitch = 14;
 
 // Piezo buzzer pin & channel
-int Buzzer = 16;
+int BUZZER_PIN = 16;
+int BUZZER_CHANNEL = 0;
 
 // Screen refresh indicator
 bool LCDRefresh = false;
