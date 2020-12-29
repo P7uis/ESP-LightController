@@ -1,14 +1,14 @@
 void ESP_LightController_RotaryEncoder_Scroll()
 {
   // Detect scrolling activity
-  if ((PinALast == HIGH) && (PinA == LOW))
+  if ((PinALast == LOW) && (PinA == HIGH))
   {
     // Reset screen and menu option lenght variables
     lcd.clear();
     CountCurrent = 0, CountNext = 0, CountPrevious = 0;
 
     // Prevent scrolling until proccess is complete
-    ScrollLock = true;
+    //ScrollLock = true;
 
     // Detect if user is in main menu
     if (Screen_MainMenu)
@@ -64,7 +64,7 @@ void ESP_LightController_RotaryEncoder_Scroll()
 
     
     // Re enable scrolling
-    ScrollLock = false;
+    //ScrollLock = false;
 
   }
   PinALast = PinA;

@@ -4,13 +4,13 @@ void ESP_LightController_Menu_Walkthrough()
   if (Screen_MainMenu)
   {
 
-    if (ScrollLock) {
+    //if (ScrollLock) {
       SelectionPrevious = MainMenuPosition - 1;
       if (SelectionPrevious < 0)SelectionPrevious = MainMenuLength;
       SelectionNext = MainMenuPosition + 1;
       if (SelectionNext > MainMenuLength)SelectionNext = 0;
-      ScrollLock = false;
-    }
+      //ScrollLock = false;
+    //}
     if (LCDRefresh)lcd.clear();
 
     //current
