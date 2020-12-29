@@ -49,9 +49,9 @@ void loop(){
     }
 
     // Read rotary encoder input
-    PinA = digitalRead(A0);
-    PinB = digitalRead(A1);
-    PinC = digitalRead(A2);
+    PinA = digitalRead(EncoderPinA);
+    PinB = digitalRead(EncoderPinB);
+    PinC = digitalRead(EncoderPinC);
 
     // Scroll Actions
     FilamentCalculator_RotaryEncoderScroll();
