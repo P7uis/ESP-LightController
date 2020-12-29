@@ -53,12 +53,12 @@ void loop(){
     PinB = digitalRead(EncoderPinB);
     PinC = digitalRead(EncoderPinC);
 
-    // Scroll Actions
-    FilamentCalculator_RotaryEncoderScroll();
+     // Scroll Actions
+    ESP_LightController_RotaryEncoder_Scroll();
 
     // Click Actions
-    FilamentCalculator_RotaryEncoderClick();
+    ESP_LightController_RotaryEncoder_Click();
   
     // Screen Output
-    FilamentCalculator_MenuWalkthrough();
+    ESP_LightController_Menu_Walkthrough();
 }
