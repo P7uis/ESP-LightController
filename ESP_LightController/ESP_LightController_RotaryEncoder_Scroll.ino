@@ -62,6 +62,10 @@ void ESP_LightController_RotaryEncoder_Scroll()
       // TODO
     }
 
+    
+    // Re enable scrolling
+    ScrollLock = false;
+
   }
   PinALast = PinA;
 }

@@ -12,19 +12,19 @@ void ESP_LightController_Buzzer(int BuzzerTune){
   }
   // Button click sound
   else if(BuzzerTune == 1){
-        tone(BUZZER_PIN, NOTE_D6, 100, BUZZER_CHANNEL);
+        tone(BUZZER_PIN, NOTE_E6, 100, BUZZER_CHANNEL);
         noTone(BUZZER_PIN, BUZZER_CHANNEL);
   }
   // Button scroll right sound
   // <------------------------------------------------------------------------------------------[TODO]-----[Change sound because i don't know the sounds iself]-----------
   else if(BuzzerTune == 2){
-        tone(BUZZER_PIN, NOTE_D6, 100, BUZZER_CHANNEL);
+        tone(BUZZER_PIN, NOTE_D4, 100, BUZZER_CHANNEL);
         noTone(BUZZER_PIN, BUZZER_CHANNEL);
   }
   // Button scroll leftsound
   // <------------------------------------------------------------------------------------------[TODO]-----[Change sound because i don't know the sounds iself]-----------
   else if(BuzzerTune == 3){
-        tone(BUZZER_PIN, NOTE_D6, 100, BUZZER_CHANNEL);
+        tone(BUZZER_PIN, NOTE_C4, 100, BUZZER_CHANNEL);
         noTone(BUZZER_PIN, BUZZER_CHANNEL);
   }
 }
