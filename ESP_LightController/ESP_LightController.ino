@@ -14,7 +14,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 void setup(){
 
     //Enable serial if debugging is on
-    if(SerialDebug)Serial.begin (9600);
+    if(SerialDebug)Serial.begin(115200);
 
     // Initialize encode pins
     pinMode(EncoderPinA, INPUT_PULLUP);
@@ -65,7 +65,13 @@ void loop(){
         Serial.println(MainMenuOption);
         Serial.print("Pin A: ");
         Serial.println(PinA);
+        Serial.print("Pin A Last: ");
+        Serial.println(PinALast);
         Serial.print("Pin B: ");
         Serial.println(PinB);
+        Serial.print("Pin C: ");
+        Serial.println(PinC);
+        if((PinALast == HIGH) && (PinA == LOW)){if (PinB == LOW){Serial.println("Right")}else{Serial.println("Left")}}else{Serial.println("None")}
+
       }
 }

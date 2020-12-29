@@ -1,7 +1,7 @@
 void ESP_LightController_RotaryEncoder_Scroll()
 {
   // Detect scrolling activity
-  if ((PinALast == LOW) && (PinA == HIGH))
+  if ((PinALast == HIGH) && (PinA == LOW))
   {
     // Reset screen and menu option lenght variables
     lcd.clear();
@@ -14,7 +14,7 @@ void ESP_LightController_RotaryEncoder_Scroll()
     if (Screen_MainMenu)
     {
       // Scroll right
-      if (PinB == HIGH)
+      if (PinB == LOW)
       {
         // Play a scroll right sound
         ESP_LightController_Buzzer(2);
