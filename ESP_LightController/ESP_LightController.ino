@@ -71,7 +71,6 @@ void loop(){
         Serial.println(PinB);
         Serial.print("Pin C: ");
         Serial.println(PinC);
-        if((PinALast == HIGH) && (PinA == LOW)){if (PinB == LOW){Serial.println("Right")}else{Serial.println("Left")}}else{Serial.println("None")}
-
+        if((PinALast == HIGH) && (PinA == LOW)){if (PinB == LOW;{Serial.println("Right");}else{Serial.println("Left");}}else{Serial.println("None");}
       }
 }
