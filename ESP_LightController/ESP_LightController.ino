@@ -6,11 +6,7 @@
 
 // Other tabs
 #include "ESP_LightController_Variables.h"
-#include "ESP_LightController_Buzzer.h"
-#include "ESP_LightController_RotaryEncoder_Click.h"
-#include "ESP_LightController_RotaryEncoder_Scroll.h"
 #include "ESP_LightController_Menu_Variables.h"
-#include "ESP_LightController_Menu_Walkthrough.h"
 
 // set LCD address, number of columns and rows
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
