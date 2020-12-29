@@ -57,4 +57,15 @@ void loop(){
   
     // Screen Output
     ESP_LightController_Menu_Walkthrough();
+
+    if(SerialDebug){
+        Serial.print("[");
+        Serial.print(MainMenuPosition);
+        Serial.print("]Selection: ");
+        Serial.println(MainMenuOption);
+        Serial.print("Pin A: ");
+        Serial.println(PinA);
+        Serial.print("Pin B: ");
+        Serial.println(PinB);
+      }
 }

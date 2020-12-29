@@ -9,8 +9,8 @@ int EncoderPinC = 15;
 // Rotary encoder pin states
 int PinALast  = LOW;
 int PinA      = LOW;
-int PinB;
-int PinC;
+int PinB      = LOW;
+int PinC      = LOW;
 
 // Prevention for holding the click button
 bool HoldLock = true;
