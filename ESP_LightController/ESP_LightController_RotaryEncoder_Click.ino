@@ -1,7 +1,7 @@
 void ESP_LightController_RotaryEncoder_Click()
 {
   // Check if button is pressed
-  if (PinC == HIGH)
+  if (PinC == LOW)
   {
     // Make sure that holding the button counts as one press instead of one million
     if (HoldLock)
