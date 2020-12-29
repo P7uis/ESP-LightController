@@ -20,7 +20,7 @@ void ESP_LightController_RotaryEncoder_Scroll()
         ESP_LightController_Buzzer(2);
 
         // Reset to first menu option if the user reaches the end, making it an infinite loop
-        if (MainMenuPosition == MainMenuLength)MainMenuPosition = 0;
+        if (MainMenuPosition > MainMenuLength)MainMenuPosition = 0;
 
         // Increase position when scrolling to the right
         else MainMenuPosition++;
@@ -40,7 +40,7 @@ void ESP_LightController_RotaryEncoder_Scroll()
         ESP_LightController_Buzzer(3);
 
         // Reset to last menu option if the user reaches the start, making it an infinite loop
-        if (MainMenuPosition == 0)MainMenuPosition = MainMenuLength;
+        if (MainMenuPosition < 0)MainMenuPosition = MainMenuLength;
 
         // Decrease position when scrolling to the left
         else MainMenuPosition--;
