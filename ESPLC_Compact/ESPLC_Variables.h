@@ -1,1 +1,0 @@
-bool SerialDebug = true; int EncoderPinA = 2; int EncoderPinB = 4; int EncoderPinC = 15; int PinALast  = HIGH; int PinA      = HIGH; int PinB      = HIGH; int PinC      = HIGH; int BUZZER_PIN = 16; int BUZZER_CHANNEL = 0; bool LCDRefresh = true; const long RefreshInterval = 500; unsigned long LastTick = 0; bool ClickLock = true;
