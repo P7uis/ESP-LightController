@@ -41,6 +41,16 @@ void loop(){
         Serial.print("Screen refreshed: ");
         Serial.println(LCDRefresh);
     }
+
+    // This is a timer that refreshes the screen every x miliseconds
+    if (millis() - LastTick >= RefreshInterval) {
+        // Update last tick moment
+        LastTick = millis();
+
+        // Tell other functions that screen has cleared
+        LCDRefresh = true;
+    }
+
     // Read rotary encoder input
     PinA = digitalRead(EncoderPinA);
     PinB = digitalRead(EncoderPinB);
