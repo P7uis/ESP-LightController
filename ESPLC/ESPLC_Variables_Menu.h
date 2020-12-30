@@ -21,8 +21,8 @@ int StartPosition = 0;
 
 // These are used to scroll through strings that are longer than the screen itself 
 int CountCurrent = 0;
-int CountNext = 0;
 int CountPrevious = 0;
+int CountNext = 0;
 
 // Main menu
 String  MainMenuOptions[]           = {"RoofLights", "UnderGlow", "Beacon", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
