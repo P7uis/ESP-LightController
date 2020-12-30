@@ -20,4 +20,3 @@ int     SelectionNext               = 0;
 String  MainMenuOptions[]           = {"RoofLights", "UnderGlow", "Beacon"};
 int     MainMenuLength              = 2;
 int     MainMenuPosition            = 0;
-String  MainMenuOption              = MainMenuOptions[MainMenuPosition];

@@ -30,6 +30,14 @@ void setup(){
 
 void loop(){
 
+    if(SerialDebug){
+        Serial.print("MenuPos: ");
+        Serial.println(MainMenuPosition);
+        Serial.print("MenuOption: ");
+        Serial.println(MainMenuOptions[MainMenuPosition]);
+        Serial.print("Screen refreshed: ");
+        Serial.println(LCDRefresh);
+    }
     // Read rotary encoder input
     PinA = digitalRead(EncoderPinA);
     PinB = digitalRead(EncoderPinB);

@@ -7,7 +7,7 @@ void ESPLC_Display()
     if (MainMenu)
     {
       lcd.setCursor(0, 0);
-      lcd.print(MainMenuOption);
+      lcd.print(MainMenuOptions[MainMenuPosition]);
     }
     // Prevent screen from refreshing/changing if no changes have been made
     LCDRefresh = false;
