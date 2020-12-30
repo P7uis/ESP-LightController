@@ -25,7 +25,7 @@ void setup(){
     lcd.backlight();
 
     // Play startup tune (if you haven't disabled the jingle and decided to add code more code in the setup make sure to keep this last as an indicator of complete startup)
-    ESP_LightController_Buzzer(0);
+    ESPLC_Buzzer(0);
 }
 
 void loop(){
@@ -39,7 +39,7 @@ void loop(){
     ESPLC_RotaryEncoder_Scroll();
 
     // Click actions
-    ESPLC_RotaryEncoder_Click()
+    ESPLC_RotaryEncoder_Click();
 
     // Show menu on display
     ESPLC_Display();
