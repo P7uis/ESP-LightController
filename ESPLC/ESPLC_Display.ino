@@ -50,7 +50,7 @@ void ESPLC_Display()
         lcd.setCursor(16 - MainMenuOptions[SelectionNext].length(), 1);
         lcd.print(MainMenuOptions[SelectionNext]);
       }
-      else if (LCDRefresh) {
+      else{
         lcd.setCursor(9, 1);
         lcd.print(MainMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
         CountNext++;
@@ -102,7 +102,7 @@ void ESPLC_Display()
         lcd.setCursor(16 - RLMenuOptions[SelectionNext].length(), 1);
         lcd.print(RLMenuOptions[SelectionNext]);
       }
-      else if (LCDRefresh) {
+      else{
         lcd.setCursor(9, 1);
         lcd.print(RLMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
         CountNext++;
@@ -154,7 +154,7 @@ void ESPLC_Display()
         lcd.setCursor(16 - UGMenuOptions[SelectionNext].length(), 1);
         lcd.print(UGMenuOptions[SelectionNext]);
       }
-      else if (LCDRefresh) {
+      else{
         lcd.setCursor(9, 1);
         lcd.print(UGMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
         CountNext++;
@@ -206,7 +206,7 @@ void ESPLC_Display()
         lcd.setCursor(16 - BeaconMenuOptions[SelectionNext].length(), 1);
         lcd.print(BeaconMenuOptions[SelectionNext]);
       }
-      else if (LCDRefresh) {
+      else{
         lcd.setCursor(9, 1);
         lcd.print(BeaconMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
         CountNext++;
