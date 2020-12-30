@@ -16,7 +16,15 @@ bool MainMenu = true;
 int     SelectionPrevious           = 0;
 int     SelectionNext               = 0;
 
+// Used for centering text on screen
+int StartPosition = 0;
+
+// These are used to scroll through strings that are longer than the screen itself 
+int CountCurrent = 0;
+int CountNext = 0;
+int CountPrevious = 0;
+
 // Main menu
-String  MainMenuOptions[]           = {"RoofLights", "UnderGlow", "Beacon"};
-int     MainMenuLength              = 2;
+String  MainMenuOptions[]           = {"RoofLights", "UnderGlow", "Beacon", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+int     MainMenuLength              = 3;
 int     MainMenuPosition            = 0;

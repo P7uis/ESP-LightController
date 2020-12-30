@@ -13,6 +13,9 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup(){
 
+    //Enable serial if debugging is on
+    if(SerialDebug)Serial.begin(115200);
+    
     // Initialize encode pins
     pinMode(EncoderPinA, INPUT_PULLUP);
     pinMode(EncoderPinB, INPUT_PULLUP);
