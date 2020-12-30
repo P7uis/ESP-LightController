@@ -1,3 +1,5 @@
+#include <LiquidCrystal_I2C.h>
+
 /*********
   Rui Santos
   Complete project details at https://randomnerdtutorials.com  
