@@ -24,3 +24,6 @@ const long RefreshInterval = 500;
 
 // Last moment that timer has "ticked"
 unsigned long LastTick = 0;
+
+// Click Lock
+bool ClickLock = true;
