@@ -24,7 +24,15 @@ RotaryC "15"	INPUT_PULLUP
 Rooflight flipswitch "12" INPUT_PULLUP
 UnderGlow flipswitch "14" INPUT_PULLUP
 
+
 PIEZO buzzer "16"	OUTPUT
+
+
+LED1 "RGB, 32, 33, 34"
+
+LED2 "RGB, 25, 26, 27"
+
+LED3 "RGB, 17, 18, 19"
 
 
 
