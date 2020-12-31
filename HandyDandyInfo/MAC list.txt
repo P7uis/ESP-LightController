@@ -1,7 +1,9 @@
 ESP32 
 
-main unit B4:E6:2D:97:54:E5
-Underglow 30:AE:A4:8F:D1:1C
+main unit 30:AE:A4:8F:D1:1C
+Underglow B4:E6:2D:97:62:1D
+
+
 
 
 ESP8266
