@@ -28,11 +28,12 @@ UnderGlow flipswitch "14" INPUT_PULLUP
 PIEZO buzzer "16"	OUTPUT
 
 
-LED1 "RGB, 32, 33, 34"
+RGB led pin "unknown"
 
-LED2 "RGB, 25, 26, 27"
+ESP32 Underglow receiver 
+Left side strip pin "unknown"
+Right side strip pin "unknown"
 
-LED3 "RGB, 17, 18, 19"
 
 
 
@@ -50,29 +51,87 @@ leeg3
 ----Rooflights---- (Bij selecteren van een pattern moet er code gaan lopen om de lampen aan te sturen  maar allen als pin 12 LOW is(die moet ik nog testen). Zolang pin12 LOW is word de pattern verzonden. als pin 12 HIGH gezet word, word er eenmalig de uitcode verzonden en de pattern gestopt. Zodra pin 12 LOW is gaat de pattern code weer actief. de laatste selectie is dus opgeslagen in memory.)
 
 ON 		(dit stuurt eenmalig de aan code naar alle lampen)
-Pattern 1 	(patterns worden net als de ON funtie nog geprogrammeerd)
-Pattern 2
-Pattern 3
-Pattern 4
-Pattern 5
-Pattern 6
-Pattern 7
-OFF
+
+
+Knight Rider
+[10000, 01000, 00100, 00010, 00001, 00010, 00100, 01000]
+As fast as kit from knight rider.
+
+
+Warning
+[100101, 01010]
+Not to fast but not so slow either.
+
+
+Inside out
+[00100, 01010, 10001]
+
+
+Outside In
+[10001, 01010, 00100]
+
+
+Right
+Right 1 [10000, 01000, 00100, 00010, 00001]
+Right 2 [10000, 11000, 01100, 00110, 00011, 00001]
+Right 3 [00000, 10000, 11000, 11100, 11110, 11111]
+
+
+Left
+Left 1 [00001, 00010, 00100, 01000, 10000]
+Left 2 [00001, 00011, 00110, 01100, 11000, 10000]
+Left 3 [00000, 00001, 00011, 00111, 01111, 11111]
+
+
+Off
+
+
 Back
 
 
-----UnderGlow---- (Bij selecteren van onderstaande opties eenmalig code uitvoeren en terug keren naar menu. store selectie in memory en die eenmalig verstuurd word als flipswitchpin14 LOW gezet word, als pin 14Low gezet word of uit is word eenmalig uitcode verzonden maar niet de selectie in memory wijzigen. Dit aan en uit zetten zou ik graag willen doen op elk gewenst moment.)
-Preset1
-Preset2
-Preset3
-Preset4
-Preset5
-Preset6
-CUSTOM
+
+
+----UnderGlow---- (Bij selecteren van onderstaande opties functie uitvoeren) Store selectie in memory en die eenmalig verstuurd word als flipswitchpin14 LOW gezet word, als pin 14Low gezet word of uit is word eenmalig uitcode verzonden maar niet de selectie in memory wijzigen. Dit aan en uit zetten zou ik graag willen doen op elk gewenst moment.
+Sync with internal Leds if possible)
+
+Smooth cycle
+Just cycle through all the colours smooth
+
+Harsh cycle
+Just cycle through all coulors but not smooth
+
+Police (blinking randomly blue om both sides)
+
+American police (blinking like the american police lights)
+
+
+Red
+
+
+Apple green
+
+
+Blue
+
+
+Panda yellow
+
+
+White
+
+
+CUSTOM (to put in rgb values that will be sent once)
+
+
 OFF
+
+
 Back
 
----Beacon--- (sends a certain on or off code once)
+
+
+
+---Beacon 1--- (sends a certain on or off code once)
 ON
 OFF
 Back
