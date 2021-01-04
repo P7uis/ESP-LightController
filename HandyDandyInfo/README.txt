@@ -117,6 +117,9 @@ Blue
 Panda yellow
 
 
+Purple
+
+
 White
 
 
