@@ -27,3 +27,9 @@ unsigned long LastTick = 0;
 
 // Click Lock
 bool ClickLock = true;
+
+// Current roof light array
+int CurrentRL;
+
+// Current roof light delay
+int CurrentRLDelay;

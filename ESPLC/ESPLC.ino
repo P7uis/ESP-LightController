@@ -4,6 +4,12 @@
 // Library - Piezo buzzer
 #include <Tone32.h>
 
+// Library - ESP NOW
+#include <esp_now.h>
+
+// Library - WiFi
+#include <WiFi.h>
+
 // Variables
 #include "ESPLC_Variables.h"
 #include "ESPLC_Variables_menu.h"
@@ -11,7 +17,17 @@
 // set LCD address, number of columns and rows
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
 
+class RoofLights //<------------------------------------------------------------------------------------------ do something more with this
+{
+  public:
+    String Name;
+    int Delay;
+    String ACtions;
+};
+
 void setup(){
+
+
 
     //Enable serial if debugging is on
     if(SerialDebug)Serial.begin(115200);
@@ -29,6 +45,22 @@ void setup(){
 
     // Play startup tune (if you haven't disabled the jingle and decided to add code more code in the setup make sure to keep this last as an indicator of complete startup)
     ESPLC_Buzzer(0);
+
+    RoofLights test2;
+
+    RoofLights test1;
+    test1.Name = "test1";
+    test1.Delay = 100;
+    test1.ACtions = "01010-101010-00000-11111";
+
+    for(auto x : test1.ACtions)
+    {
+        Serial.println(x);
+    }
+
+    test2 = test1;
+
+    Serial.print(test2.Name);
 }
 
 void loop(){
