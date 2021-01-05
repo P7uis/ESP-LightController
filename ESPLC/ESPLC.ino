@@ -17,6 +17,10 @@
 // set LCD address, number of columns and rows
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
 
+// Make a seperate task on core 2 for the loop that controlls the lights
+TaskHandle_t RoofLightsTask;
+TaskHandle_t MainTask;
+
 void setup(){
 
     //Enable serial if debugging is on
@@ -33,12 +37,44 @@ void setup(){
     // Turn on the LCD backlight                      
     lcd.backlight();
 
+    xTaskCreatePinnedToCore(
+                    RoofLightsLoop,   /* Task function. */
+                    "RoofLightsLoop",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &RoofLightsTask,      /* Task handle to keep track of created task */
+                    0);          /* pin task to core 0 */
+
+    xTaskCreatePinnedToCore(
+                    MainLoop,   /* Task function. */
+                    "MainLoop",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &MainTask,      /* Task handle to keep track of created task */
+                    1);          /* pin task to core 0 */
+
     // Play startup tune (if you haven't disabled the jingle and decided to add code more code in the setup make sure to keep this last as an indicator of complete startup)
     ESPLC_Buzzer(0);
 
 }
-void loop(){
+void loop(){}
 
+void RoofLightsLoop( void * pvParameters ){
+
+  for(;;){
+    Serial.print("ff testen rooflightloop (1s delay) ");
+    Serial.println(xPortGetCoreID());
+    delay(1000);
+      //TODO something something
+  }
+}
+
+void MainLoop( void * pvParameters ){
+
+  for(;;){
+      
     if(SerialDebug){
         //Serial.print("MenuPos: ");
         //Serial.println(MainMenuPosition);
@@ -46,13 +82,16 @@ void loop(){
         //Serial.println(MainMenuOptions[MainMenuPosition]);
         //Serial.print("Screen refreshed: ");
         //Serial.println(LCDRefresh);
-        Serial.println((millis() - LastTick));
+        
+        Serial.print("ff testen normalloop ");
+        Serial.println(xPortGetCoreID());
     }
 
     // This is a timer that refreshes the screen every x miliseconds
     if (millis() - LastTick >= RefreshInterval) {
         // Update last tick moment
         LastTick = millis();
+
         // Tell other functions that screen has cleared
         LCDRefresh = true;
     }
@@ -70,4 +109,5 @@ void loop(){
 
     // Show menu on display
     ESPLC_Display();
+  }
 }
