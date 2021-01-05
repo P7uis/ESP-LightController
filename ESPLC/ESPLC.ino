@@ -23,6 +23,8 @@ TaskHandle_t RoofLightsTask;
 void RoofLightsLoop( void * pvParameters ){
 
   for(;;){
+    Serial.println("ff testen rooflightloop");
+    Serial.println(xPortGetCoreID());
       //TODO something something
   }
 }
@@ -66,6 +68,9 @@ void loop(){
         Serial.println(MainMenuOptions[MainMenuPosition]);
         Serial.print("Screen refreshed: ");
         Serial.println(LCDRefresh);
+        
+        Serial.println("ff testen normalloop");
+        Serial.println(xPortGetCoreID());
     }
 
     // This is a timer that refreshes the screen every x miliseconds
