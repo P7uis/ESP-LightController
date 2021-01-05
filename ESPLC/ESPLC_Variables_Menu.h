@@ -30,37 +30,20 @@ int     MainMenuLength              = 2;
 int     MainMenuPosition            = 0;
 
 // 1 - Roof Lights
-String  RLMenuOptions[]             = {"Knight Rider", "Warning", "Inside Out", "Outside In", "Right 1", "Right 2", "Right 3", "Left 1", "Left 2", "Left 3", "BACK"};
 int     RLMenuLength                = 10;
 int     RLMenuPosition              = 0;
-/*
-// List of all roof light options
-int RLOptions[] = {
-    {10000, 01000, 00100, 00010, 00001, 00010, 00100, 01000},   // Knight Rider
-    {10101, 01010},                                             // Warning
-    {00100, 01010, 10001},                                      // Inside Out
-    {10001, 01010, 00100},                                      // Outside In
-    {10000, 01000, 00100, 00010, 00001},                        // Right 1
-    {10000, 11000, 01100, 00110, 00011, 00001},                 // Right 2
-    {00000, 10000, 11000, 11100, 11110, 11111},                 // Right 3
-    {00001, 00010, 00100, 01000, 10000},                        //
-    {00001, 00011, 00110, 01100, 11000, 10000},                 //
-    {00000, 00001, 00011, 00111, 01111, 11111}                  //
+String  RoofLights[][3]              = {
+    {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
+    {"Warning","10101,01010","100"},
+    {"Inside Out","00100,01010,10001","100"},
+    {"Outside In","10001,01010,00100","100"},
+    {"Right 1","10000,01000,00100,00010,00001","100"},
+    {"Right 2","10000,11000,01100,00110,00011,00001","100"},
+    {"Right 3","00000,10000,11000,11100,11110,11111","100"},
+    {"Left 1","00001,00010,00100,01000,10000","100"},
+    {"Left 2","00001,00011,00110,01100,11000,10000","100"},
+    {"Left 3","00000,00001,00011,00111,01111,11111","100"}
 };
-// List of all delays in order
-int RLDelay[] = {
-    100,
-    100,
-    100,
-    100,
-    100,
-    100,
-    100,
-    100,
-    100,
-    100
-};
-*/
 
 // 2 - Under Glow
 String  UGMenuOptions[]             = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "BACK"};

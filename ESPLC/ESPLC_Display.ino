@@ -66,31 +66,31 @@ void ESPLC_Display()
       if (SelectionNext > RLMenuLength)SelectionNext = 0;
 
       // Define starting position based on lenght of string and if it is even or odd
-      if (RLMenuOptions[RLMenuPosition].length() % 2)StartPosition = 16 / 2 - (RLMenuOptions[RLMenuPosition].length() + 1) / 2;
-      else StartPosition = 16 / 2 - RLMenuOptions[RLMenuPosition].length() / 2;
+      if (RoofLights[RLMenuPosition][0].length() % 2)StartPosition = 16 / 2 - (RoofLights[RLMenuPosition][0].length() + 1) / 2;
+      else StartPosition = 16 / 2 - RoofLights[RLMenuPosition][0].length() / 2;
 
       // Check if the string is longer than 16 (screens horizontal character limit) otherwise it will scroll through the words
-      if (RLMenuOptions[RLMenuPosition].length() < 16) {
+      if (RoofLights[RLMenuPosition][0].length() < 16) {
         lcd.setCursor(StartPosition, 0);
-        lcd.print(RLMenuOptions[RLMenuPosition]);
+        lcd.print(RoofLights[RLMenuPosition][0]);
       }
       else{
         lcd.setCursor(0, 0);
-        lcd.print(RLMenuOptions[RLMenuPosition].substring(CountCurrent, CountCurrent + 16));
+        lcd.print(RoofLights[RLMenuPosition][0].substring(CountCurrent, CountCurrent + 16));
         CountCurrent++;
-        if (CountCurrent > RLMenuOptions[RLMenuPosition].length() - 16)CountCurrent = 0;
+        if (CountCurrent > RoofLights[RLMenuPosition][0].length() - 16)CountCurrent = 0;
       }
 
       // Previous Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words
-      if (RLMenuOptions[SelectionPrevious].length() < 8) {
+      if (RoofLights[SelectionPrevious][0].length() < 8) {
         lcd.setCursor(0, 1);
-        lcd.print(RLMenuOptions[SelectionPrevious]);
+        lcd.print(RoofLights[SelectionPrevious][0]);
       }
       else{
         lcd.setCursor(0, 1);
-        lcd.print(RLMenuOptions[SelectionPrevious].substring(CountPrevious, CountPrevious + 7));
+        lcd.print(RoofLights[SelectionPrevious][0].substring(CountPrevious, CountPrevious + 7));
         CountPrevious++;
-        if (CountPrevious > RLMenuOptions[SelectionPrevious].length() - 7)CountPrevious = 0;
+        if (CountPrevious > RoofLights[SelectionPrevious][0].length() - 7)CountPrevious = 0;
       }
 
       // The divider of the previous and next options
@@ -98,15 +98,15 @@ void ESPLC_Display()
       lcd.print("<>");
       
       // Next Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words 
-      if (RLMenuOptions[SelectionNext].length() < 8) {
-        lcd.setCursor(16 - RLMenuOptions[SelectionNext].length(), 1);
-        lcd.print(RLMenuOptions[SelectionNext]);
+      if (RoofLights[SelectionNext][0].length() < 8) {
+        lcd.setCursor(16 - RoofLights[SelectionNext][0].length(), 1);
+        lcd.print(RoofLights[SelectionNext][0]);
       }
       else{
         lcd.setCursor(9, 1);
-        lcd.print(RLMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
+        lcd.print(RoofLights[SelectionNext][0].substring(CountNext, CountNext + 7));
         CountNext++;
-        if (CountNext > RLMenuOptions[SelectionNext].length() - 7)CountNext = 0;
+        if (CountNext > RoofLights[SelectionNext][0].length() - 7)CountNext = 0;
       }
     }
     // Check if in the underglow menu
