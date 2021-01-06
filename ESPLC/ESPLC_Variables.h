@@ -16,6 +16,15 @@ int PinC      = HIGH;
 int BUZZER_PIN = 16;
 int BUZZER_CHANNEL = 0;
 
+// Lights on/off switch pin
+int RLSwitchPin = 12;
+
+// Lights on/off switch pin
+int RLSwitch = HIGH;
+
+// Lights on/off boolean
+bool RLOnOff = false;
+
 // Indicator if screen has refreshed
 bool LCDRefresh = true;
 
@@ -29,7 +38,7 @@ unsigned long LastTick = 0;
 bool ClickLock = true;
 
 // Current roof light array
-int CurrentRL;
+String CurrentRL;
 
 // Current roof light delay
-int CurrentRLDelay;
+String CurrentRLDelay;

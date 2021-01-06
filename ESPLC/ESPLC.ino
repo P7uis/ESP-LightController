@@ -20,7 +20,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 void setup(){
 
     //Enable serial if debugging is on
-    if(SerialDebug)Serial.begin(115200);
+    Serial.begin(115200);
     
     // Initialize encode pins
     pinMode(EncoderPinA, INPUT_PULLUP);
@@ -39,16 +39,6 @@ void setup(){
 }
 void loop(){
 
-    if(SerialDebug){
-        //Serial.print("MenuPos: ");
-        //Serial.println(MainMenuPosition);
-        //Serial.print("MenuOption: ");
-        //Serial.println(MainMenuOptions[MainMenuPosition]);
-        //Serial.print("Screen refreshed: ");
-        //Serial.println(LCDRefresh);
-        Serial.println((millis() - LastTick));
-    }
-
     // This is a timer that refreshes the screen every x miliseconds
     if (millis() - LastTick >= RefreshInterval) {
         // Update last tick moment
@@ -57,12 +47,16 @@ void loop(){
         LCDRefresh = true;
     }
 
-    // Read rotary encoder input
+    // Read pin input
     PinA = digitalRead(EncoderPinA);
     PinB = digitalRead(EncoderPinB);
     PinC = digitalRead(EncoderPinC);
+    RLSwitch = digitalRead(RLSwitchPin);
 
-     // Scroll actions
+    // Switch actions
+    ESPLC_Switches();
+
+    // Scroll actions
     ESPLC_RotaryEncoder_Scroll();
 
     // Click actions

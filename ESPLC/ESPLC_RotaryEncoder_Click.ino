@@ -16,15 +16,12 @@ void ESPLC_RotaryEncoder_Click()
       // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
       if (RLMenuPosition == RLMenuLength)MenuIndex = 0;
       else{
-        // Loop through the other options
-        switch (RLMenuPosition) {
-          case 1:
-            // TODO pattern 1
-            break;
-          case 2:
-            // TODO pattern 2 etc...
-            break;
-        }
+        // Send light actions through serial to light controller using the A before and after to indicate the array through serial
+        CurrentRL = RoofLights[RLMenuPosition][1];
+        writeString("A" + CurrentRL + "A");
+        // Send light delay through serial to light controller using the D before and after to indicate the delay through serial
+        CurrentRLDelay = RoofLights[RLMenuPosition][1];
+        writeString("D" + CurrentRLDelay + "D");
       }     
     }
     // Check if in underglow menu
