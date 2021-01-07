@@ -46,7 +46,12 @@ leeg3
 
 ----Rooflights---- (Bij selecteren van een pattern moet er code gaan lopen om de lampen aan te sturen  maar allen als pin 12 LOW is(die moet ik nog testen). Zolang pin12 LOW is word de pattern verzonden. als pin 12 HIGH gezet word, word er eenmalig de uitcode verzonden en de pattern gestopt. Zodra pin 12 LOW is gaat de pattern code weer actief. de laatste selectie is dus opgeslagen in memory.)
 
-ON 		(dit stuurt eenmalig de aan code naar alle lampen)
+ON (met een selectie vraag waar een nummer tussen de 5 en 1 te kiezen is
+5	(Alle Lampen aan)
+4	(Alle lampen aan behalve de midelste)
+3	(Lamp 1, 3 en 5 aan)
+2	(Lamp 1 en 5 aan)
+1	(Lamp 3 aan)
 
 
 Knight Rider
