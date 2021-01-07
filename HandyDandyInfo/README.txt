@@ -28,11 +28,7 @@ UnderGlow flipswitch "14" INPUT_PULLUP
 PIEZO buzzer "16"	OUTPUT
 
 
-RGB led pin "unknown"
-
-ESP32 Underglow receiver 
-Left side strip pin "unknown"
-Right side strip pin "unknown"
+NEO pixels led 1,2,3 pin "13"
 
 
 
