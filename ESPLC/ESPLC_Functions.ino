@@ -1,8 +1,16 @@
-void writeString(String stringData) { // Used to serially push out a String with Serial.write()
+void SerialStructure() {
 
-  for (int i = 0; i < stringData.length(); i++)
-  {
-    Serial.write(stringData[i]);   // Push each char 1 by 1 on each loop pass
+  // Send structure over serial
+  RoofLightStructure.RLArray = RoofLights[RLMenuPosition][1];
+  RoofLightStructure.RLDelay = RoofLights[RLMenuPosition][2];
+  RoofLightStructure.RLState = RLState;
+  unsigned long uBufSize = sizeof(RLStruct);
+  char pBuffer[uBufSize];
+
+  memcpy(pBuffer, &RoofLightStructure, uBufSize);
+  for(int i = 0; i<uBufSize;i++) {
+    Serial.print(pBuffer[i]);
   }
+  Serial.println(); // Might need to delete this not sure
 
-}// end writeString
+}
