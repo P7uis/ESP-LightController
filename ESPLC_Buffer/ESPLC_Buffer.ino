@@ -13,8 +13,10 @@ int i = 0;
 
 int RLArrayLen = 0;
 
+//Serial2.begin(9600, SERIAL_8N1, 16, 17);
+
 void setup() {
-    Serial.begin(115200);
+    //Serial.begin(115200);
     Serial1.begin(115200);
     
 }
