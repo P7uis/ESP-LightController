@@ -12,9 +12,10 @@ int i = 0;
 bool updated = true;
 
 String RLArray;
-String RLDelay = 100;
-String RLState = 0;
+int RLDelay = 100;
+int RLState = 0;
 String CurrentInput;
+String CurrentInputPrefix;
   
 void setup(){
 
@@ -38,16 +39,20 @@ void loop(){
       updated = false;
       cString[chPos] = 0; //terminate cString
       chPos = 0;
+      
+      for(i=0; i<sizeof cString/sizeof cString[0]; i++){
+        CurrentInput += cString[i];
+      }
       // get the first 5 chars to indicate which variable to convert
-      Currentinput = cString.substring(0,5);
-      if(Currentinput == "array"){
-        RLArray = cString.substring(5);
+      CurrentInputPrefix = CurrentInput.substring(0,5);
+      if(CurrentInputPrefix == "array"){
+        RLArray = CurrentInput.substring(5);
       }
-      else if(Currentinput == "delay"){
-        RLDelay = cString.substring(5).toInt();
+      else if(CurrentInputPrefix == "delay"){
+        RLDelay = CurrentInput.substring(5).toInt();
       }
-      else if(Currentinput == "state"){
-        RLState = cString.substring(5).toInt();
+      else if(CurrentInputPrefix == "state"){
+        RLState = CurrentInput.substring(5).toInt();
       }
    }
   // if the array is filled filled continue
