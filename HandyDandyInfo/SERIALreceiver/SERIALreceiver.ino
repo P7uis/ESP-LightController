@@ -1,6 +1,6 @@
 //Receiver code
  #include <SoftwareSerial.h>
- SoftwareSerial link(2); // Rx
+ SoftwareSerial link(2); // Rx pin defined, TX not defined
   
   char cString[200];
   byte chPos = 0;
