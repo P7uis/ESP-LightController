@@ -2,10 +2,10 @@
  #include <SoftwareSerial.h>
  SoftwareSerial link(2); // Rx
   
-  char cString[50];
+  char cString[200];
   byte chPos = 0;
   byte ch = 0;
-  char dataStr[50];
+  char dataStr[1];
   ////////////////////////////////////////////
   void setup() 
   {
