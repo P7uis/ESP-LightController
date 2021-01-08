@@ -56,12 +56,13 @@ void loop(){
       }
    }
   // if the array is filled filled continue
-  if(RLArray != NULL){
+  if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
     if(i >= RLArray.length()){i = 0;}
     Serial.println(RLArray.substring(i, i+5));
     i += 6;
     delay(RLDelay);
   }
+  else{Serial.println("Input not complete")}
   
     
 }

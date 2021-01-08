@@ -5,7 +5,7 @@ void ESPLC_Switches(){
         RLState = "1";
 
         // Send structure over serial
-        SerialStructure();
+        //SerialStructure();
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
     else if(RLSwitch == HIGH && RLOnOff == true){
@@ -13,6 +13,6 @@ void ESPLC_Switches(){
         RLState = "0";
 
         // Send structure over serial
-        SerialStructure();
+        //SerialStructure();
     }
 }
