@@ -1,6 +1,6 @@
 //Receiver code
  #include <SoftwareSerial.h>
- SoftwareSerial link(2, 0); // Rx, Tx
+ SoftwareSerial link(2); // Rx
   
   char cString[50];
   byte chPos = 0;
