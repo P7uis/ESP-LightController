@@ -1,5 +1,5 @@
 //Receiver code
- #include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
  SoftwareSerial link(2); // Rx pin defined, TX not defined
   
   char cString[200];
