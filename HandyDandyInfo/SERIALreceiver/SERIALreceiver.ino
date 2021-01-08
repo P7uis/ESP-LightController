@@ -10,7 +10,7 @@
   void setup() 
   {
     link.begin(115200); //setup software serial
-    Serial.begin(9600);    //setup serial monitor
+    Serial.begin(115200);    //setup serial monitor
   }
   ////////////////////////////////////////////
   void loop()  
