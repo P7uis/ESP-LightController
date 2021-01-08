@@ -24,7 +24,7 @@ int RLSwitch = HIGH;
 
 // Lights on/off boolean
 bool RLOnOff = false;
-int RLState = 0;
+String RLState = "0";
 
 // Indicator if screen has refreshed
 bool LCDRefresh = true;
@@ -38,11 +38,5 @@ unsigned long LastTick = 0;
 // Click Lock
 bool ClickLock = true;
 
-// Make a data structure to send over serial or esp-now and then use memcpy to hopefully receive all data seperated into variables
-typedef struct RLStruct {
-  String RLArray;
-  String RLDelay;
-  int RLState;
-} RLStruct;
-
-RLStruct RoofLightStructure;
+String RLArray;
+String RLDelay;

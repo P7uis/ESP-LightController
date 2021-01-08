@@ -1,16 +1,13 @@
 void SerialStructure() {
 
   // Send structure over serial
-  RoofLightStructure.RLArray = RoofLights[RLMenuPosition][1];
-  RoofLightStructure.RLDelay = RoofLights[RLMenuPosition][2];
-  RoofLightStructure.RLState = RLState;
-  unsigned long uBufSize = sizeof(RLStruct);
-  char pBuffer[uBufSize];
+  RLArray = RoofLights[RLMenuPosition][1];
+  RLDelay = RoofLights[RLMenuPosition][2];
 
-  memcpy(pBuffer, &RoofLightStructure, uBufSize);
-  for(int i = 0; i<uBufSize;i++) {
-    Serial.print(pBuffer[i]);
-  }
-  Serial.println(); // Might need to delete this not sure
+  Serial.println("array" + RLArray);
+  delay(20);
+  Serial.println("delay" + RLDelay);
+  delay(20);
+  Serial.println("state" + RLState); 
 
 }

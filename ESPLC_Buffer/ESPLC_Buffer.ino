@@ -1,51 +1,62 @@
-// Make a data structure to send over serial or esp-now and then use memcpy to hopefully receive all data seperated into variables
-typedef struct RLStruct {
-  String RLArray;
-  String RLDelay;
-  int RLState;
-} RLStruct;
+//Receiver code
+#include <SoftwareSerial.h>
+SoftwareSerial link(2); // Rx
 
-RLStruct RoofLightStructure;
-
-byte input[sizeof(RoofLightStructure)];
+char cString[200];
+byte chPos = 0;
+byte ch = 0;
+char dataStr[1];
 
 int i = 0;
 
-int RLArrayLen = 0;
+bool updated = true;
 
-//Serial2.begin(9600, SERIAL_8N1, 16, 17);
+String RLArray;
+String RLDelay = 100;
+String RLState = 0;
+String CurrentInput;
+  
+void setup(){
 
-void setup() {
-    //Serial.begin(115200);
-    Serial1.begin(115200);
-    
-}
+    link.begin(115200); //setup software serial
+    Serial.begin(115200);    //setup serial monitor
+    link.write(Serial.read());  
+}   
 
-void loop() {
-  // Honestly don't know if this works but here's to hoping
+void loop(){    
 
-  // If receiving data
-  if (Serial.available()) {
-    delay(2000); //Wait 2 seconds to allow all serial data sent to be received together
-    while (Serial.available())
-    {
-      input[i] == Serial.read(); //convert all bytes into an array? idk honestly
-      i++;
-    }
-
-    // convert the bytes which should be the same as the structure rooflightstructure to that, idk how it works or even if it works
-    memcpy(&RoofLightStructure, input, sizeof(RoofLightStructure));
-    
-    Serial1.println("Printing received data converted");
-    Serial1.println(RoofLightStructure.RLArray);// Does this work? idk
-    Serial1.println(RoofLightStructure.RLDelay);// Does this work? idk
-    Serial1.println(RoofLightStructure.RLState);// Does this work? idk
-
-    // Set var to length of array string to loop through it every 6 indexes (01010,)
-    RLArrayLen = RoofLightStructure.RLArray.length();    
+   while(link.available())
+   {
+    //read incoming char by char:
+     ch = link.read();
+     cString[chPos] = ch;
+     chPos++;     
+     updated = true;
+   }
+   // write chars to variable
+   if(updated){
+      updated = false;
+      cString[chPos] = 0; //terminate cString
+      chPos = 0;
+      // get the first 5 chars to indicate which variable to convert
+      Currentinput = cString.substring(0,5);
+      if(Currentinput == "array"){
+        RLArray = cString.substring(5);
+      }
+      else if(Currentinput == "delay"){
+        RLDelay = cString.substring(5).toInt();
+      }
+      else if(Currentinput == "state"){
+        RLState = cString.substring(5).toInt();
+      }
+   }
+  // if the array is filled filled continue
+  if(RLArray != NULL){
+    if(i >= RLArray.length()){i = 0;}
+    Serial.println(RLArray.substring(i, i+5));
+    i += 6;
+    delay(RLDelay);
   }
-  if(i >= RLArrayLen){i = 0;}
-  Serial1.println(RoofLightStructure.RLArray.substring(i, i+5));
-  i += 6;
-  delay(RoofLightStructure.RLDelay.toInt());
+  
+    
 }
