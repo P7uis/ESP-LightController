@@ -43,6 +43,9 @@ void loop(){
       for(i=0; i<sizeof cString/sizeof cString[0]; i++){
         CurrentInput += cString[i];
       }
+      Serial.print("input raw: ");
+      Serial.println(cString);
+      Serial.println("input converted: " + CurrentInput);
       // get the first 5 chars to indicate which variable to convert
       CurrentInputPrefix = CurrentInput.substring(0,5);
       if(CurrentInputPrefix == "array"){
@@ -62,7 +65,7 @@ void loop(){
     i += 6;
     delay(RLDelay);
   }
-  else{Serial.println("Input not complete")}
+  else{Serial.println("Input not complete");}
   
     
 }
