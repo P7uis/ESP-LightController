@@ -7,6 +7,12 @@ typedef struct RLStruct {
 
 RLStruct RoofLightStructure;
 
+byte input[sizeof(RoofLightStructure)];
+
+int i = 0;
+
+int RLArrayLen = 0;
+
 void setup() {
     Serial.begin(115200);
     Serial1.begin(115200);
@@ -16,23 +22,28 @@ void setup() {
 void loop() {
   // Honestly don't know if this works but here's to hoping
 
-  // Maybe add a var to lock updating while
-
-  if (Serial1.available()) {
+  // If receiving data
+  if (Serial.available()) {
     delay(2000); //Wait 2 seconds to allow all serial data sent to be received together
-    memcpy(&RoofLightStructure, Serial1.read(), sizeof(RoofLightStructure));// Does this work? idk
-    String lightcycle[] = RoofLightStructure.RLArray.Split(",");// Does this work? idk
+    while (Serial.available())
+    {
+      input[i] == Serial.read(); //convert all bytes into an array? idk honestly
+      i++;
+    }
+
+    // convert the bytes which should be the same as the structure rooflightstructure to that, idk how it works or even if it works
+    memcpy(&RoofLightStructure, input, sizeof(RoofLightStructure));
+    
+    Serial1.println("Printing received data converted");
     Serial1.println(RoofLightStructure.RLArray);// Does this work? idk
     Serial1.println(RoofLightStructure.RLDelay);// Does this work? idk
     Serial1.println(RoofLightStructure.RLState);// Does this work? idk
-  }
-  
-  
-  for (int i=0; i<sizeof lightcycle/sizeof lightcycle[0]; i++) {
-  {
-    // Does this work? idk
-    |Serial1.println(lightcycle[i]);
-  }
-  
 
+    // Set var to length of array string to loop through it every 6 indexes (01010,)
+    RLArrayLen = RoofLightStructure.RLArray.length();    
+  }
+  if(i >= RLArrayLen){i = 0;}
+  Serial1.println(RoofLightStructure.RLArray.substring(i, i+5));
+  i += 6;
+  delay(RoofLightStructure.RLDelay.toInt());
 }
