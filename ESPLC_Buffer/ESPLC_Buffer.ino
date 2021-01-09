@@ -60,7 +60,7 @@ void loop(){
       }
 
 
-      // DEBUG - print raw input
+  /*    // DEBUG - print raw input
       Serial.println("----------------------------------------------------------------------");
       Serial.print("input raw: ");
       Serial.println(cString);
@@ -75,13 +75,15 @@ void loop(){
       Serial.print("Current state variable: ");
       Serial.println(RLState);
       Serial.println("----------------------------------------------------------------------");
+      */
    }
+
 
   // if the variables are filled continue
   if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
     // Loop through array
     if(i >= RLArray.length()){i = 0;}
-    //Serial.println(RLArray.substring(i, i+5));
+    Serial.println(RLArray.substring(i, i+5));
     i += 6;
     delay(RLDelay);
   }
