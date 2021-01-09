@@ -20,8 +20,7 @@ String CurrentInputPrefix;
 void setup(){
 
     link.begin(115200); //setup software serial
-    Serial.begin(115200);    //setup serial monitor
-    link.write(Serial.read());  
+    Serial.begin(74880);    //setup serial monitor
 }   
 
 void loop(){    
@@ -47,13 +46,6 @@ void loop(){
       //Convert char array to string
       CurrentInput = String(cString);
 
-      // DEBUG - print raw input
-      Serial.print("input raw: ");
-      Serial.println(cString);
-      // DEBUG - print converted string input
-      Serial.println("input converted: " + CurrentInput);
-
-
       // get the first 5 chars to indicate which variable to convert
       CurrentInputPrefix = CurrentInput.substring(0,5);
 
@@ -67,21 +59,29 @@ void loop(){
         RLState = CurrentInput.substring(5).toInt();
       }
 
-        // DEBUG - print converted variables
-        Serial.println("Current array variable: " + RLArray);
 
-        Serial.print("Current delay variable: ");
-        Serial.println(RLDelay);
-
-        Serial.print("Current state variable: ");
-        Serial.println(RLState);
+      // DEBUG - print raw input
+      Serial.println("----------------------------------------------------------------------");
+      Serial.print("input raw: ");
+      Serial.println(cString);
+      Serial.println("----------------------------------------------------------------------");
+      Serial.println("input converted: " + CurrentInput);
+      Serial.println("----------------------------------------------------------------------");
+      Serial.println("Current array variable: " + RLArray);
+      Serial.println("----------------------------------------------------------------------");
+      Serial.print("Current delay variable: ");
+      Serial.println(RLDelay);
+      Serial.println("----------------------------------------------------------------------");
+      Serial.print("Current state variable: ");
+      Serial.println(RLState);
+      Serial.println("----------------------------------------------------------------------");
    }
 
   // if the variables are filled continue
   if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
     // Loop through array
     if(i >= RLArray.length()){i = 0;}
-    Serial.println(RLArray.substring(i, i+5));
+    //Serial.println(RLArray.substring(i, i+5));
     i += 6;
     delay(RLDelay);
   }

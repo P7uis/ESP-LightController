@@ -7,7 +7,7 @@ void ESPLC_RotaryEncoder_Click()
     ClickLock = false;
 
     //DEBUG - check if cliced
-    Serial.println("DEBUG: Button clicked");
+    //Serial.println("DEBUG: Button clicked");
 
     // Check if in main menu
     if(MenuIndex == 0){
