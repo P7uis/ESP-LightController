@@ -6,6 +6,9 @@ void ESPLC_RotaryEncoder_Click()
     // Disable clicking until the button has been released
     ClickLock = false;
 
+    //DEBUG - check if cliced
+    Serial.println("DEBUG: Button clicked");
+
     // Check if in main menu
     if(MenuIndex == 0){
       // Set the menu index of the position of the main menu + 1 because 0 in main menu is roof lights but in index it is the main menu again
