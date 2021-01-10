@@ -18,8 +18,9 @@ bool updated = true;
 String CurrentInput;
 String CurrentInputPrefix;
 String RLArray;
+String RLState;
 int RLDelay;
-int RLState;
+
 
 
 // ESP-NOW variables and libraries
@@ -114,7 +115,7 @@ void loop(){
         RLDelay = CurrentInput.substring(5).toInt();
       }
       else if(CurrentInputPrefix == "state"){
-        RLState = CurrentInput.substring(5).toInt();
+        RLState = CurrentInput.substring(5);
       }
 
 
@@ -140,21 +141,34 @@ void loop(){
   // if the variables are filled continue
   if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
     
-    // Reset array to 0 if at end
-    if(i >= RLArray.length()){i = 0;}
-    
-    // DEBUG - log converted array in serial
-    Serial.println(RLArray.substring(i, i+5));
+    // If state is on
+    if(RLState == "1"){
+        // Reset array to 0 if at end
+      if(i >= RLArray.length()){i = 0;}
+      
+      // DEBUG - log converted array in serial
+      Serial.println(RLArray.substring(i, i+5));
 
-    // Send message via ESP-NOW
-    ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
-    esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
-    
-    // Go to next index of array
-    i += 6;
+      // Send message via ESP-NOW
+      ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
+      esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+      
+      // Go to next index of array
+      i += 6;
 
-    // Delay the set amount of ms
-    delay(RLDelay);
+      // Delay the set amount of ms
+      delay(RLDelay);
+    }
+
+    // If state is off
+    else{
+      // DEBUG - log disabled array 
+      Serial.println("00000");
+
+      // Send message via ESP-NOW
+      ESPRS.ESPRelayArray = "00000";
+      esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+    }
   }
   else{Serial.println("Input not complete");}
   
