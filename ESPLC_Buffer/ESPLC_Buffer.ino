@@ -18,7 +18,7 @@ bool updated = true;
 String CurrentInput;
 String CurrentInputPrefix;
 String RLArray;
-String RLState;
+int RLState;
 int RLDelay;
 
 
@@ -115,7 +115,7 @@ void loop(){
         RLDelay = CurrentInput.substring(5).toInt();
       }
       else if(CurrentInputPrefix == "state"){
-        RLState = CurrentInput.substring(5);
+        RLState = CurrentInput.substring(5).toInt();
       }
 
 
@@ -142,7 +142,7 @@ void loop(){
   if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
     
     // If state is on
-    if(RLState == "1"){
+    if(RLState == 1){
         // Reset array to 0 if at end
       if(i >= RLArray.length()){i = 0;}
       
