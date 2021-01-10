@@ -22,10 +22,13 @@ void setup(){
     //Enable serial if debugging is on
     Serial.begin(115200);
     
-    // Initialize encode pins
+    // Initialize encoder pins
     pinMode(EncoderPinA, INPUT_PULLUP);
     pinMode(EncoderPinB, INPUT_PULLUP);
     pinMode(EncoderPinC, INPUT_PULLUP);
+
+    //Initialize switch pins
+    pinMode(RLSwitchPin, INPUT_PULLUP);
 
     // Initialize the LCD
     lcd.init();
