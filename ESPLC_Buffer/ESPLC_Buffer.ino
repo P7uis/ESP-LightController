@@ -1,26 +1,83 @@
-//Receiver code
+//Serial Reader variables and libraries
 #include <SoftwareSerial.h>
 SoftwareSerial link(2); // Rx
 
+// Vars of incoming serial bytes
 char cString[200];
 byte chPos = 0;
 byte ch = 0;
 char dataStr[1];
 
+// Standard var for looping through var
 int i = 0;
 
+// To prevent unnecessarily converting input bytes to variables if no new data has been received
 bool updated = true;
 
+// Variables of converted data
+String CurrentInput;
+String CurrentInputPrefix;
 String RLArray;
 int RLDelay;
 int RLState;
-String CurrentInput;
-String CurrentInputPrefix;
+
+
+// ESP-NOW variables and libraries
+#include <ESP8266WiFi.h>
+#include <espnow.h>
+
+// Mac addresses of light relay modules
+uint8_t ESPRelay1[] = {0x84, 0x0D, 0x8E, 0x97, 0x97, 0xDF};
+uint8_t ESPRelay2[] = {0x84, 0x0D, 0x8E, 0x97, 0x97, 0xE0};
+uint8_t ESPRelay3[] = {0x84, 0x0D, 0x8E, 0x97, 0x97, 0xE1};
+uint8_t ESPRelay4[] = {0x84, 0x0D, 0x8E, 0x97, 0x98, 0x02};
+uint8_t ESPRelay5[] = {0x84, 0x0D, 0x8E, 0x97, 0x98, 0x09};
+
+
+// Make a structure to send data
+typedef struct ESPRelayStructure {
+  String ESPRelayArray;
+} ESPRelayStructure;
+
+ESPRelayStructure ESPRS;
+
+// Callback when data is sent
+void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
+  char macStr[18];
+  Serial.print("Packet to:");
+  snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
+         mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);
+  Serial.print(macStr);
+  Serial.print(" send status: ");
+  if (sendStatus == 0){
+    Serial.println("Delivery success");
+  }
+  else{
+    Serial.println("Delivery fail");
+  }
+}
   
 void setup(){
 
     link.begin(115200); //setup software serial
     Serial.begin(74880);    //setup serial monitor
+
+    // Set device as a Wi-Fi Station
+    WiFi.mode(WIFI_STA);
+    WiFi.disconnect();
+
+    // Init ESP-NOW
+    if (esp_now_init() != 0) {
+      Serial.println("Error initializing ESP-NOW");
+      return;
+    }
+
+    // Register peerS
+    esp_now_add_peer(ESPRelay1, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    esp_now_add_peer(ESPRelay2, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    esp_now_add_peer(ESPRelay3, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    esp_now_add_peer(ESPRelay4, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    esp_now_add_peer(ESPRelay5, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
 }   
 
 void loop(){    
@@ -36,6 +93,7 @@ void loop(){
 
    // If received incoming data, convert to needed variables
    if(updated){
+     
       // Make sure to not run this every loop unless new data is received
       updated = false;
 
@@ -81,10 +139,21 @@ void loop(){
 
   // if the variables are filled continue
   if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
-    // Loop through array
+    
+    // Reset array to 0 if at end
     if(i >= RLArray.length()){i = 0;}
+    
+    // DEBUG - log converted array in serial
     Serial.println(RLArray.substring(i, i+5));
+
+    // Send message via ESP-NOW
+    ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
+    esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+    
+    // Go to next index of array
     i += 6;
+
+    // Delay the set amount of ms
     delay(RLDelay);
   }
   else{Serial.println("Input not complete");}
