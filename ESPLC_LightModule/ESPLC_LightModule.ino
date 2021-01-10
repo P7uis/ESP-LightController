@@ -43,6 +43,7 @@ void setup() {
   
   //DEBUG - enable onboard led to test without relays
   pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
