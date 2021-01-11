@@ -177,8 +177,6 @@ void loop(){
 
     // If state is off
     else{
-      // DEBUG - log disabled array 
-      Serial.println("00000");
 
       // Send message via ESP-NOW
       ESPRS.ESPRelayArray = "00000";
