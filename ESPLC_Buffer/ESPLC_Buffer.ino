@@ -74,6 +74,12 @@ void setup(){
       return;
     }
 
+     esp_now_set_self_role(ESP_NOW_ROLE_CONTROLLER);
+  
+    // Once ESPNow is successfully Init, we will register for Send CB to
+    // get the status of Trasnmitted packet
+    esp_now_register_send_cb(OnDataSent);
+
     // Register peerS
     esp_now_add_peer(ESPRelay1, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
     esp_now_add_peer(ESPRelay2, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
