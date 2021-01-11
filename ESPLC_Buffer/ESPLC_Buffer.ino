@@ -14,6 +14,9 @@ int i = 0;
 // To prevent unnecessarily converting input bytes to variables if no new data has been received
 bool updated = true;
 
+// To prevent unlimited sending of "off" state
+bool statelock = true;
+
 // Variables of converted data
 String CurrentInput;
 String CurrentInputPrefix;
@@ -147,46 +150,56 @@ void loop(){
    }
 
 
-  // if the variables are filled continue
-  if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
+
     
     // If state is on
-    if(RLState == 1){
+    if(RLState != NULL && RLState == 1){
 
-      // This is the replacement for the delay to possibly give a more consistent "in between time" of each cycle
-      // If we were to simply put a delay, the rest of the program will add to that time aswell, now it wil just check if the total passed time equals or is longer than the delay variable
-      if (millis() - LastTick >= RLDelay) {
-          
-          // Update last tick moment
-          LastTick = millis();
+      // if switched on
+      statelock = true;
 
-          // Reset array to 0 if at end of array
-          if(i >= RLArray.length()){i = 0;}
+      // if the variables are filled continue
+      if(RLArray != NULL && RLDelay != NULL && RLState != NULL){
 
-          // Send message via ESP-NOW
-          ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
-          esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+        // This is the replacement for the delay to possibly give a more consistent "in between time" of each cycle
+        // If we were to simply put a delay, the rest of the program will add to that time aswell, now it wil just check if the total passed time equals or is longer than the delay variable
+        if (millis() - LastTick >= RLDelay) {
+            
+            // Update last tick moment
+            LastTick = millis();
 
-          // DEBUG - log converted array in serial
-          Serial.println(ESPRS.ESPRelayArray);
-          
-          // Go to next index of array
-          i += 6;
+            // Reset array to 0 if at end of array
+            if(i >= RLArray.length()){i = 0;}
+
+            // Send message via ESP-NOW
+            ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
+            esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+
+            // DEBUG - log converted array in serial
+            Serial.print("Array[");
+            Serial.print(i);
+            Serial.print("]: ");
+            Serial.println(ESPRS.ESPRelayArray);
+            
+            // Go to next index of array
+            i += 6;
+        }
       }
+      else{Serial.println("Input not complete");}
     }
 
     // If state is off
-    else{
+    else if(statelock){
+      statelock = false;
 
       // Send message via ESP-NOW
       ESPRS.ESPRelayArray = "00000";
       esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
 
       // DEBUG - log converted array in serial
-          Serial.println(ESPRS.ESPRelayArray);
+      Serial.print("Array[x]: ");
+      Serial.println(ESPRS.ESPRelayArray);
     }
-  }
-  else{Serial.println("Input not complete");}
   
     
 }
