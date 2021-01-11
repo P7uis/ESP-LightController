@@ -46,16 +46,16 @@ ESPRelayStructure ESPRS;
 // Callback when data is sent
 void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
   char macStr[18];
-  Serial.print("Packet to:");
+  //Serial.print("Packet to:");
   snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
          mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);
-  Serial.print(macStr);
-  Serial.print(" send status: ");
+  //Serial.print(macStr);
+  //Serial.print(" send status: ");
   if (sendStatus == 0){
-    Serial.println("Delivery success");
+    //Serial.println("Delivery success");
   }
   else{
-    Serial.println("Delivery fail");
+    //Serial.println("Delivery fail");
   }
 }
   
@@ -70,7 +70,7 @@ void setup(){
 
     // Init ESP-NOW
     if (esp_now_init() != 0) {
-      Serial.println("Error initializing ESP-NOW");
+      //Serial.println("Error initializing ESP-NOW");
       return;
     }
 
@@ -162,13 +162,13 @@ void loop(){
 
           // Reset array to 0 if at end of array
           if(i >= RLArray.length()){i = 0;}
-          
-          // DEBUG - log converted array in serial
-          Serial.println(RLArray.substring(i, i+5));
 
           // Send message via ESP-NOW
           ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
           esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+
+          // DEBUG - log converted array in serial
+          Serial.println(ESPRS.ESPRelayArray);
           
           // Go to next index of array
           i += 6;
@@ -183,6 +183,9 @@ void loop(){
       // Send message via ESP-NOW
       ESPRS.ESPRelayArray = "00000";
       esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+
+      // DEBUG - log converted array in serial
+          Serial.println(ESPRS.ESPRelayArray);
     }
   }
   else{Serial.println("Input not complete");}
