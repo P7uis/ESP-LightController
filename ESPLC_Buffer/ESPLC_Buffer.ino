@@ -18,7 +18,7 @@ bool updated = true;
 bool statelock = true;
 
 // DEBUG DEBUG VAR
-bool DebugVar = true;
+bool DebugVar = false;
 
 // Variables of converted data
 String CurrentInput;
