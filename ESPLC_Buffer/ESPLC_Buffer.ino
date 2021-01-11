@@ -167,9 +167,6 @@ void loop(){
         // If we were to simply put a delay, the rest of the program will add to that time aswell, now it wil just check if the total passed time equals or is longer than the delay variable
         if (millis() - LastTick >= RLDelay) {
             
-            //TODO add lock for static input
-            //if(RLArray.substring(i, i+5))
-
             // Update last tick moment
             LastTick = millis();
 
@@ -187,6 +184,9 @@ void loop(){
             
             // Go to next index of array
             i += 6;
+
+            // DEBUUG log cycle
+            Serial.println(ESPRS.ESPRelayArray);
         }
       }
       else{Serial.println("Input not complete");}
