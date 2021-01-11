@@ -200,7 +200,7 @@ void loop()
 
           if (DebugVar)
           {
-            Serial.print("State: ");
+            Serial.print("Cycle: ");
             Serial.println(ESPRS.ESPRelayArray);
           }
         }
@@ -226,7 +226,7 @@ void loop()
 
     if (DebugVar)
     {
-      Serial.print("State: ");
+      Serial.print("Cycle: ");
       Serial.println(ESPRS.ESPRelayArray);
     }
   }
