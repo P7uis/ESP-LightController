@@ -168,8 +168,8 @@ void loop(){
             // Update last tick moment
             LastTick = millis();
 
-            // Reset array to 0 if at end of array
-            if(i >= RLArray.length()){i = 0;}
+            // Reset array to 0 if at end of array minus 1 
+            if(i >= RLArray.length()-6){i = 0;}
 
             // Send message via ESP-NOW
             ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
