@@ -9,6 +9,7 @@ typedef struct ESPRelayStructure {
 ESPRelayStructure ESPRS;
 
 int State = 0;
+int SwitchPin = 0;
 
 // Callback function that will be executed when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
@@ -26,13 +27,13 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
       //TODO Turn on relay (also still need to define relay pin)
 
       //DEBUG - turn on onboard led
-      digitalWrite(LED_BUILTIN, LOW);
+      digitalWrite(SwitchPin, LOW);
   }
   else{
       //TODO Turn off relay (also still need to define relay pin)
 
       //DEBUG  - turn off onboard led
-      digitalWrite(LED_BUILTIN, HIGH);
+      digitalWrite(SwitchPin, HIGH);
   }
   
 }
@@ -42,8 +43,8 @@ void setup() {
   Serial.begin(115200);
   
   //DEBUG - enable onboard led to test without relays
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  pinMode(SwitchPin, OUTPUT);
+  digitalWrite(SwitchPin, HIGH);
 
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
