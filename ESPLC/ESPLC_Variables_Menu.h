@@ -32,7 +32,8 @@ int     MainMenuPosition            = 0;
 // 1 - Roof Lights
 int     RLMenuLength                = 15;
 int     RLMenuPosition              = 0;
-String  RoofLights[][3]              = {
+bool    RLInitialized               = false;
+String  RoofLights[][3]             = {
     {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
     {"Warning","10101,01010","200"},
     {"Inside Out","00100,01010,10001","200"},
@@ -55,6 +56,7 @@ String  RoofLights[][3]              = {
 String  UGMenuOptions[]             = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "BACK"};
 int     UGMenuLength                = 10;
 int     UGMenuPosition              = 0;
+bool    UGInitialized               = false;
 
 // 3 - Beacon
 String  BeaconMenuOptions[]         = {"ON", "OFF", "BACK"};

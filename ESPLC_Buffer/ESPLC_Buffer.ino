@@ -176,9 +176,14 @@ void loop(){
             // Reset array to 0 if at end of array minus 1 
             if(i >= RLArray.length()-6){i = 0;}
 
-            // Send message via ESP-NOW
-            ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
-            esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+            // Check if array is actually changing or if it is static
+            if(PrevCycle != RLArray.substring(i, i+5)){
+              // Update previous cycle
+              PrevCycle = RLArray.substring(i, i+5);
+              // Send message via ESP-NOW
+              ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
+              esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+            }
             
             // Go to next index of array
             i += 6;
@@ -187,17 +192,13 @@ void loop(){
       else{Serial.println("Input not complete");}
     }
 
-    // If state is off
+    // prevent constant sending of the off signal, only when changed
     else if(statelock){
       statelock = false;
 
       // Send message via ESP-NOW
       ESPRS.ESPRelayArray = "00000";
       esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
-
-      // DEBUG - log converted array in serial
-      Serial.print("Array[x]: ");
-      Serial.println(ESPRS.ESPRelayArray);
     }
   
     

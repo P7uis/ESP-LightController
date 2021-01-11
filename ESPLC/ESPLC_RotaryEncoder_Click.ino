@@ -20,6 +20,7 @@ void ESPLC_RotaryEncoder_Click()
       if (RLMenuPosition == RLMenuLength)MenuIndex = 0;
       else{
         
+        RLInitialized = true;
         RLArray = RoofLights[RLMenuPosition][1];
         RLDelay = RoofLights[RLMenuPosition][2];
         // Send structure over serial
