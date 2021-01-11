@@ -17,6 +17,9 @@ bool updated = true;
 // To prevent unlimited sending of "off" state
 bool statelock = true;
 
+// DEBUG DEBUG VAR
+bool DebugVar = true;
+
 // Variables of converted data
 String CurrentInput;
 String CurrentInputPrefix;
@@ -132,32 +135,31 @@ void loop()
       RLArray = CurrentInput.substring(5);
       // Reset counter to loop through array when receiving a new array
       i = 0;
+      PrevCycle = "";
+      if (DebugVar)
+      {
+        Serial.print("Array: ");
+        Serial.println(RLArray);
+      }
     }
     else if (CurrentInputPrefix == "delay")
     {
       RLDelay = CurrentInput.substring(5).toInt();
+      if (DebugVar)
+      {
+        Serial.print("Delay: ");
+        Serial.println(RLDelay);
+      }
     }
     else if (CurrentInputPrefix == "state")
     {
       RLState = CurrentInput.substring(5).toInt();
+      if (DebugVar)
+      {
+        Serial.print("State: ");
+        Serial.println(RLState);
+      }
     }
-
-    /*    // DEBUG - print raw input
-      Serial.println("----------------------------------------------------------------------");
-      Serial.print("input raw: ");
-      Serial.println(cString);
-      Serial.println("----------------------------------------------------------------------");
-      Serial.println("input converted: " + CurrentInput);
-      Serial.println("----------------------------------------------------------------------");
-      Serial.println("Current array variable: " + RLArray);
-      Serial.println("----------------------------------------------------------------------");
-      Serial.print("Current delay variable: ");
-      Serial.println(RLDelay);
-      Serial.println("----------------------------------------------------------------------");
-      Serial.print("Current state variable: ");
-      Serial.println(RLState);
-      Serial.println("----------------------------------------------------------------------");
-      */
   }
 
   // If state is on
@@ -189,18 +191,18 @@ void loop()
         if (PrevCycle != RLArray.substring(i, i + 5))
         {
 
-          // DEBUUG log cycle
-          Serial.print("Previous: ");
-          Serial.println(PrevCycle);
-          Serial.print("Current:  ");
-          Serial.println(ESPRS.ESPRelayArray);
-
           // Update previous cycle
           PrevCycle = RLArray.substring(i, i + 5);
 
           // Send message via ESP-NOW
           ESPRS.ESPRelayArray = RLArray.substring(i, i + 5);
           esp_now_send(0, (uint8_t *)&ESPRS, sizeof(ESPRS));
+
+          if (DebugVar)
+          {
+            Serial.print("State: ");
+            Serial.println(ESPRS.ESPRelayArray);
+          }
         }
 
         // Go to next index of array
@@ -216,11 +218,16 @@ void loop()
   // prevent constant sending of the off signal, only when changed
   else if (statelock)
   {
-    Serial.println("State: off");
     statelock = false;
 
     // Send message via ESP-NOW
     ESPRS.ESPRelayArray = "00000";
     esp_now_send(0, (uint8_t *)&ESPRS, sizeof(ESPRS));
+
+    if (DebugVar)
+    {
+      Serial.print("State: ");
+      Serial.println(ESPRS.ESPRelayArray);
+    }
   }
 }
