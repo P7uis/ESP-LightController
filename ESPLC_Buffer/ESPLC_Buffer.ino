@@ -21,7 +21,8 @@ String RLArray;
 int RLState;
 int RLDelay;
 
-
+// Last moment that timer has "ticked"
+unsigned long LastTick = 0;
 
 // ESP-NOW variables and libraries
 #include <ESP8266WiFi.h>
@@ -110,6 +111,8 @@ void loop(){
 
       if(CurrentInputPrefix == "array"){
         RLArray = CurrentInput.substring(5);
+        // Reset counter to loop through array when receiving a new array
+        i = 0;
       }
       else if(CurrentInputPrefix == "delay"){
         RLDelay = CurrentInput.substring(5).toInt();
@@ -143,21 +146,27 @@ void loop(){
     
     // If state is on
     if(RLState == 1){
-        // Reset array to 0 if at end
-      if(i >= RLArray.length()){i = 0;}
-      
-      // DEBUG - log converted array in serial
-      Serial.println(RLArray.substring(i, i+5));
 
-      // Send message via ESP-NOW
-      ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
-      esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
-      
-      // Go to next index of array
-      i += 6;
+      // This is the replacement for the delay to possibly give a more consistent "in between time" of each cycle
+      // If we were to simply put a delay, the rest of the program will add to that time aswell, now it wil just check if the total passed time equals or is longer than the delay variable
+      if (millis() - LastTick >= RLDelay) {
+          
+          // Update last tick moment
+          LastTick = millis();
 
-      // Delay the set amount of ms
-      delay(RLDelay);
+          // Reset array to 0 if at end of array
+          if(i >= RLArray.length()){i = 0;}
+          
+          // DEBUG - log converted array in serial
+          Serial.println(RLArray.substring(i, i+5));
+
+          // Send message via ESP-NOW
+          ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
+          esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
+          
+          // Go to next index of array
+          i += 6;
+      }
     }
 
     // If state is off
