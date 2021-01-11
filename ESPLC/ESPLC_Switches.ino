@@ -3,6 +3,8 @@ void ESPLC_Switches(){
     if(RLSwitch == LOW && RLOnOff == false){
         RLOnOff = true;
         RLState = "1";
+        RLArray = RoofLights[RLMenuPosition][1];
+        RLDelay = RoofLights[RLMenuPosition][2];
 
         // Send structure over serial
         SerialStructure();
@@ -11,6 +13,8 @@ void ESPLC_Switches(){
     else if(RLSwitch == HIGH && RLOnOff == true){
         RLOnOff = false;
         RLState = "0";
+        RLArray = "00000";
+        RLDelay = "00000";
 
         // Send structure over serial
         SerialStructure();

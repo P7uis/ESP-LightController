@@ -19,7 +19,9 @@ void ESPLC_RotaryEncoder_Click()
       // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
       if (RLMenuPosition == RLMenuLength)MenuIndex = 0;
       else{
-
+        
+        RLArray = RoofLights[RLMenuPosition][1];
+        RLDelay = RoofLights[RLMenuPosition][2];
         // Send structure over serial
         SerialStructure();
         

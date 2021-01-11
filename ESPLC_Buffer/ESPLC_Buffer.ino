@@ -24,6 +24,8 @@ String RLArray;
 int RLState;
 int RLDelay;
 
+String PrevCycle;
+
 // Last moment that timer has "ticked"
 unsigned long LastTick = 0;
 
@@ -165,6 +167,9 @@ void loop(){
         // If we were to simply put a delay, the rest of the program will add to that time aswell, now it wil just check if the total passed time equals or is longer than the delay variable
         if (millis() - LastTick >= RLDelay) {
             
+            //TODO add lock for static input
+            //if(RLArray.substring(i, i+5))
+
             // Update last tick moment
             LastTick = millis();
 
@@ -174,12 +179,6 @@ void loop(){
             // Send message via ESP-NOW
             ESPRS.ESPRelayArray = RLArray.substring(i, i+5);
             esp_now_send(0, (uint8_t *) &ESPRS, sizeof(ESPRS));
-
-            // DEBUG - log converted array in serial
-            Serial.print("Array[");
-            Serial.print(i);
-            Serial.print("]: ");
-            Serial.println(ESPRS.ESPRelayArray);
             
             // Go to next index of array
             i += 6;
