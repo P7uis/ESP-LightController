@@ -23,7 +23,7 @@ void ESPLC_RotaryEncoder_Click()
         MenuIndex = 0; 
         Serial.print("Clicked on back should be 9 - "); 
         Serial.println(RLMenuPosition);
-        Seriial.print("Should set menu index to 0 - ");
+        Serial.print("Should set menu index to 0 - ");
         Serial.println(MenuIndex);
         // Reset position to 0 after switching menu
         RLMenuPosition = 0;
@@ -33,7 +33,7 @@ void ESPLC_RotaryEncoder_Click()
         MenuIndex = 11; 
         Serial.print("Clicked on static should be 0 - "); 
         Serial.println(RLMenuPosition);
-        Seriial.print("Should set menu index to 11 - ");
+        Serial.print("Should set menu index to 11 - ");
         Serial.println(MenuIndex);
         // Reset position to 0 after switching menu
         RLMenuPosition = 0;
@@ -43,7 +43,7 @@ void ESPLC_RotaryEncoder_Click()
         MenuIndex = 12; 
         Serial.print("Clicked on left should be 7 - "); 
         Serial.println(RLMenuPosition);
-        Seriial.print("Should set menu index to 12 - ");
+        Serial.print("Should set menu index to 12 - ");
         Serial.println(MenuIndex);
         // Reset position to 0 after switching menu
         RLMenuPosition = 0;
