@@ -18,6 +18,24 @@ void ESPLC_RotaryEncoder_Scroll()
         if(RLMenuPosition == RLMenuLength) RLMenuPosition = 0;
         else RLMenuPosition++; 
       }
+      // Check if in roof light static menu
+      else if(MenuIndex == 11){
+        // Reset to 0 if already on the last one
+        if(RLStaticMenuPosition == RLStaticMenuLength) RLStaticMenuPosition = 0;
+        else RLStaticMenuPosition++; 
+      }
+      // Check if in roof light left menu
+      else if(MenuIndex == 12){
+        // Reset to 0 if already on the last one
+        if(RLLeftMenuPosition == RLLeftMenuLength) RLLeftMenuPosition = 0;
+        else RLLeftMenuPosition++; 
+      }
+      // Check if in roof light Right menu
+      else if(MenuIndex == 13){
+        // Reset to 0 if already on the last one
+        if(RLRightMenuPosition == RLRightMenuLength) RLRightMenuPosition = 0;
+        else RLRightMenuPosition++; 
+      }
       // Check if in underglow menu
       else if(MenuIndex == 2){
         // Reset to 0 if already on the last one
@@ -47,6 +65,24 @@ void ESPLC_RotaryEncoder_Scroll()
         // Reset to last if already on the first one
         if(RLMenuPosition == 0) RLMenuPosition = RLMenuLength;
         else RLMenuPosition--; 
+      }
+      // Check if in roof light static menu
+      if(MenuIndex == 11){
+        // Reset to last if already on the first one
+        if(RLStaticMenuPosition == 0) RLStaticMenuPosition = RLStaticMenuLength;
+        else RLStaticMenuPosition--; 
+      }
+      // Check if in roof light Left menu
+      if(MenuIndex == 12){
+        // Reset to last if already on the first one
+        if(RLLeftMenuPosition == 0) RLLeftMenuPosition = RLLeftMenuLength;
+        else RLLeftMenuPosition--; 
+      }
+      // Check if in roof light Right menu
+      if(MenuIndex == 13){
+        // Reset to last if already on the first one
+        if(RLRightMenuPosition == 0) RLRightMenuPosition = RLRightMenuLength;
+        else RLRightMenuPosition--; 
       }
       // Check if in underglow menu
       if(MenuIndex == 2){

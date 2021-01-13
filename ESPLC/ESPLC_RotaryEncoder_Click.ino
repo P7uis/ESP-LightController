@@ -18,11 +18,71 @@ void ESPLC_RotaryEncoder_Click()
     else if(MenuIndex == 1){
       // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
       if (RLMenuPosition == RLMenuLength)MenuIndex = 0;
+      // If selected option is first index, move to static menu
+      else if (RLMenuPosition == 0)MenuIndex = 11;
+      // If selected option is first index, move to left menu
+      else if (RLMenuPosition == 1)MenuIndex = 12;
+      // If selected option is first index, move to right menu
+      else if (RLMenuPosition == 2)MenuIndex = 13;
       else{
         
         RLInitialized = true;
+        RLStaticInitialized = false;
+        RLLeftInitialized = false;
+        RLRightInitialized = false;
         RLArray = RoofLights[RLMenuPosition][1];
         RLDelay = RoofLights[RLMenuPosition][2];
+        // Send structure over serial
+        SerialStructure();
+        
+      }     
+    }
+    // Check if in roof light static menu
+    else if(MenuIndex == 11){
+      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
+      if (RLStaticMenuPosition == RLStaticMenuLength)MenuIndex = 0;
+      else{
+        
+        RLInitialized = false;
+        RLStaticInitialized = true;
+        RLLeftInitialized = false;
+        RLRightInitialized = false;
+        RLArray = RLStatic[RLStaticMenuPosition][1];
+        RLDelay = RLStatic[RLStaticMenuPosition][2];
+        // Send structure over serial
+        SerialStructure();
+        
+      }     
+    }
+    // Check if in roof light Left menu
+    else if(MenuIndex == 12){
+      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
+      if (RLLeftMenuPosition == RLLeftMenuLength)MenuIndex = 0;
+      else{
+        
+        RLInitialized = false;
+        RLStaticInitialized = false;
+        RLLeftInitialized = true;
+        RLRightInitialized = false;
+        RLArray = RLLeft[RLLeftMenuPosition][1];
+        RLDelay = RLLeft[RLLeftMenuPosition][2];
+        // Send structure over serial
+        SerialStructure();
+        
+      }     
+    }
+    // Check if in roof light Right menu
+    else if(MenuIndex == 13){
+      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
+      if (RLRightMenuPosition == RLRightMenuLength)MenuIndex = 0;
+      else{
+        
+        RLInitialized = false;
+        RLStaticInitialized = false;
+        RLLeftInitialized = false;
+        RLRightInitialized = true;
+        RLArray = RLRight[RLRightMenuPosition][1];
+        RLDelay = RLRight[RLRightMenuPosition][2];
         // Send structure over serial
         SerialStructure();
         

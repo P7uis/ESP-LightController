@@ -10,6 +10,21 @@ void ESPLC_Switches(){
             RLArray = RoofLights[RLMenuPosition][1];
             RLDelay = RoofLights[RLMenuPosition][2];
         }
+        else if (RLStaticInitialized)
+        {
+            RLArray = RLStatic[RLStaticMenuPosition][1];
+            RLDelay = RLStatic[RLStaticMenuPosition][2];
+        }
+        else if (RLLeftInitialized)
+        {
+            RLArray = RLLeft[RLLeftMenuPosition][1];
+            RLDelay = RLLeft[RLLeftMenuPosition][2];
+        }
+        else if (RLRightInitialized)
+        {
+            RLArray = RLRight[RLRightMenuPosition][1];
+            RLDelay = RLRight[RLRightMenuPosition][2];
+        }
         else{
             RLArray = "00000";
             RLDelay = "00000";
@@ -29,6 +44,21 @@ void ESPLC_Switches(){
         {
             RLArray = RoofLights[RLMenuPosition][1];
             RLDelay = RoofLights[RLMenuPosition][2];
+        }
+        else if (RLStaticInitialized)
+        {
+            RLArray = RLStatic[RLStaticMenuPosition][1];
+            RLDelay = RLStatic[RLStaticMenuPosition][2];
+        }
+        else if (RLLeftInitialized)
+        {
+            RLArray = RLLeft[RLLeftMenuPosition][1];
+            RLDelay = RLLeft[RLLeftMenuPosition][2];
+        }
+        else if (RLRightInitialized)
+        {
+            RLArray = RLRight[RLRightMenuPosition][1];
+            RLDelay = RLRight[RLRightMenuPosition][2];
         }
         else{
             RLArray = "00000";
