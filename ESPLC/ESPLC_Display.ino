@@ -265,6 +265,110 @@ void ESPLC_Display()
         if (CountNext > RLRight[SelectionNext][0].length() - 7)CountNext = 0;
       }
     }
+    // Check if in Roof Light IO Menu
+    else if(MenuIndex == 14){
+      // Define previous and next items indexes and reset if needed
+      SelectionPrevious = RLIOMenuPosition - 1;
+      if (SelectionPrevious < 0)SelectionPrevious = RLIOMenuLength;
+      SelectionNext = RLIOMenuPosition + 1;
+      if (SelectionNext > RLIOMenuLength)SelectionNext = 0;
+
+      // Define starting position based on lenght of string and if it is even or odd
+      if (RLIO[RLIOMenuPosition][0].length() % 2)StartPosition = 16 / 2 - (RLIO[RLIOMenuPosition][0].length() + 1) / 2;
+      else StartPosition = 16 / 2 - RLIO[RLIOMenuPosition][0].length() / 2;
+
+      // Check if the string is longer than 16 (screens horizontal character limit) otherwise it will scroll through the words
+      if (RLIO[RLIOMenuPosition][0].length() < 16) {
+        lcd.setCursor(StartPosition, 0);
+        lcd.print(RLIO[RLIOMenuPosition][0]);
+      }
+      else{
+        lcd.setCursor(0, 0);
+        lcd.print(RLIO[RLIOMenuPosition][0].substring(CountCurrent, CountCurrent + 16));
+        CountCurrent++;
+        if (CountCurrent > RLIO[RLIOMenuPosition][0].length() - 16)CountCurrent = 0;
+      }
+
+      // Previous Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words
+      if (RLIO[SelectionPrevious][0].length() < 8) {
+        lcd.setCursor(0, 1);
+        lcd.print(RLIO[SelectionPrevious][0]);
+      }
+      else{
+        lcd.setCursor(0, 1);
+        lcd.print(RLIO[SelectionPrevious][0].substring(CountPrevious, CountPrevious + 7));
+        CountPrevious++;
+        if (CountPrevious > RLIO[SelectionPrevious][0].length() - 7)CountPrevious = 0;
+      }
+
+      // The divider of the previous and next options
+      lcd.setCursor(7, 1);
+      lcd.print("<>");
+      
+      // Next Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words 
+      if (RLIO[SelectionNext][0].length() < 8) {
+        lcd.setCursor(16 - RLIO[SelectionNext][0].length(), 1);
+        lcd.print(RLIO[SelectionNext][0]);
+      }
+      else{
+        lcd.setCursor(9, 1);
+        lcd.print(RLIO[SelectionNext][0].substring(CountNext, CountNext + 7));
+        CountNext++;
+        if (CountNext > RLIO[SelectionNext][0].length() - 7)CountNext = 0;
+      }
+    }
+    // Check if in Roof Light OI Menu
+    else if(MenuIndex == 15){
+      // Define previous and next items indexes and reset if needed
+      SelectionPrevious = RLOIMenuPosition - 1;
+      if (SelectionPrevious < 0)SelectionPrevious = RLOIMenuLength;
+      SelectionNext = RLOIMenuPosition + 1;
+      if (SelectionNext > RLOIMenuLength)SelectionNext = 0;
+
+      // Define starting position based on lenght of string and if it is even or odd
+      if (RLOI[RLOIMenuPosition][0].length() % 2)StartPosition = 16 / 2 - (RLOI[RLOIMenuPosition][0].length() + 1) / 2;
+      else StartPosition = 16 / 2 - RLOI[RLOIMenuPosition][0].length() / 2;
+
+      // Check if the string is longer than 16 (screens horizontal character limit) otherwise it will scroll through the words
+      if (RLOI[RLOIMenuPosition][0].length() < 16) {
+        lcd.setCursor(StartPosition, 0);
+        lcd.print(RLOI[RLOIMenuPosition][0]);
+      }
+      else{
+        lcd.setCursor(0, 0);
+        lcd.print(RLOI[RLOIMenuPosition][0].substring(CountCurrent, CountCurrent + 16));
+        CountCurrent++;
+        if (CountCurrent > RLOI[RLOIMenuPosition][0].length() - 16)CountCurrent = 0;
+      }
+
+      // Previous Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words
+      if (RLOI[SelectionPrevious][0].length() < 8) {
+        lcd.setCursor(0, 1);
+        lcd.print(RLOI[SelectionPrevious][0]);
+      }
+      else{
+        lcd.setCursor(0, 1);
+        lcd.print(RLOI[SelectionPrevious][0].substring(CountPrevious, CountPrevious + 7));
+        CountPrevious++;
+        if (CountPrevious > RLOI[SelectionPrevious][0].length() - 7)CountPrevious = 0;
+      }
+
+      // The divider of the previous and next options
+      lcd.setCursor(7, 1);
+      lcd.print("<>");
+      
+      // Next Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words 
+      if (RLOI[SelectionNext][0].length() < 8) {
+        lcd.setCursor(16 - RLOI[SelectionNext][0].length(), 1);
+        lcd.print(RLOI[SelectionNext][0]);
+      }
+      else{
+        lcd.setCursor(9, 1);
+        lcd.print(RLOI[SelectionNext][0].substring(CountNext, CountNext + 7));
+        CountNext++;
+        if (CountNext > RLOI[SelectionNext][0].length() - 7)CountNext = 0;
+      }
+    }
     // Check if in the underglow menu
     else if(MenuIndex == 2){
       // Define previous and next items indexes and reset if needed

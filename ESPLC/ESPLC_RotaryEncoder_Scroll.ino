@@ -36,6 +36,18 @@ void ESPLC_RotaryEncoder_Scroll()
         if(RLRightMenuPosition == RLRightMenuLength) RLRightMenuPosition = 0;
         else RLRightMenuPosition++; 
       }
+      // Check if in roof light IO menu
+      else if(MenuIndex == 14){
+        // Reset to 0 if already on the last one
+        if(RLIOMenuPosition == RLIOMenuLength) RLIOMenuPosition = 0;
+        else RLIOMenuPosition++; 
+      }
+      // Check if in roof light OI menu
+      else if(MenuIndex == 15){
+        // Reset to 0 if already on the last one
+        if(RLOIMenuPosition == RLOIMenuLength) RLOIMenuPosition = 0;
+        else RLOIMenuPosition++; 
+      }
       // Check if in underglow menu
       else if(MenuIndex == 2){
         // Reset to 0 if already on the last one
@@ -83,6 +95,18 @@ void ESPLC_RotaryEncoder_Scroll()
         // Reset to last if already on the first one
         if(RLRightMenuPosition == 0) RLRightMenuPosition = RLRightMenuLength;
         else RLRightMenuPosition--; 
+      }
+      // Check if in roof light IO menu
+      if(MenuIndex == 14){
+        // Reset to last if already on the first one
+        if(RLIOMenuPosition == 0) RLIOMenuPosition = RLIOMenuLength;
+        else RLIOMenuPosition--; 
+      }
+      // Check if in roof light OI menu
+      if(MenuIndex == 15){
+        // Reset to last if already on the first one
+        if(RLOIMenuPosition == 0) RLOIMenuPosition = RLOIMenuLength;
+        else RLOIMenuPosition--; 
       }
       // Check if in underglow menu
       if(MenuIndex == 2){
