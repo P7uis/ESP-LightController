@@ -48,11 +48,11 @@ int RLStaticMenuLength = 4;
 int RLStaticMenuPosition = 0;
 bool RLStaticInitialized = false;
 String RLStatic[][3] = {
-    {"1", "11111", "1000"},
-    {"2", "11011", "1000"},
+    {"1", "00100", "1000"},
+    {"2", "10001", "1000"},
     {"3", "10101", "1000"},
-    {"4", "10001", "1000"},
-    {"5", "00100", "1000"}};
+    {"4", "11011", "1000"},
+    {"5", "11111", "1000"}};
 
 // 12 - Roof Lights - Left
 int RLLeftMenuLength = 3;
