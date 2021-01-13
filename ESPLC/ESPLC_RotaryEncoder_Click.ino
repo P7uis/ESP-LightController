@@ -17,13 +17,13 @@ void ESPLC_RotaryEncoder_Click()
     // Check if in roof light menu
     else if(MenuIndex == 1){
       // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
-      if (RLMenuPosition == RLMenuLength)MenuIndex = 0;
+      if (RLMenuPosition == RLMenuLength){MenuIndex = 0;}
       // If selected option is first index, move to static menu
-      else if (RLMenuPosition == 0)MenuIndex = 11;
+      else if (RLMenuPosition == 0){MenuIndex = 11;}
       // If selected option is first index, move to left menu
-      else if (RLMenuPosition == 1)MenuIndex = 12;
+      else if (RLMenuPosition == RLMenuLength-2){MenuIndex = 12;}
       // If selected option is first index, move to right menu
-      else if (RLMenuPosition == 2)MenuIndex = 13;
+      else if (RLMenuPosition == RLMenuLength-1){MenuIndex = 13;}
       else{
         
         RLInitialized = true;

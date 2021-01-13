@@ -67,4 +67,9 @@ void loop(){
 
     // Show menu on display
     ESPLC_Display();
+
+    Serial.print("Roof light main pos: ");
+    Serial.println(RLMenuPosition);
+    Serial.print("Menu index: ");
+    Serial.println(MenuIndex);
 }
