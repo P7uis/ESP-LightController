@@ -53,7 +53,7 @@ void ESPLC_RotaryEncoder_Click()
         MenuIndex = 13; 
         Serial.print("Clicked on right should be 8 - "); 
         Serial.println(RLMenuPosition);
-        Seriial.print("Should set menu index to 13 - ");
+        Serial.print("Should set menu index to 13 - ");
         Serial.println(MenuIndex);
         // Reset position to 0 after switching menu
         RLMenuPosition = 0;
