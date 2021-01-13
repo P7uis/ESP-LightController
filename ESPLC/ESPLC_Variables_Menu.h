@@ -44,7 +44,7 @@ String RoofLights[][3] = {
     {"BACK", "00000", "0"}};
 
 // 11 - Roof Lights - Static
-int RLStaticMenuLength = 5;
+int RLStaticMenuLength = 6;
 int RLStaticMenuPosition = 0;
 bool RLStaticInitialized = false;
 String RLStatic[][3] = {
@@ -53,7 +53,8 @@ String RLStatic[][3] = {
     {"3", "10101", "1000"},
     {"4", "11011", "1000"},
     {"5", "11111", "1000"},
-    {"BACK", "00000", "0"}};
+    {"BACK", "00000", "0"},
+    {"test", "10101", "1000"}};
 
 // 12 - Roof Lights - Left
 int RLLeftMenuLength = 3;
@@ -80,8 +81,8 @@ int RLIOMenuLength = 2;
 int RLIOMenuPosition = 0;
 bool RLIOInitialized = false;
 String RLIO[][3] = {
-    {"Inside Out", "00100,01010,10001", "200"},
-    {"Inside Out", "00100,01010,10001", "200"},
+    {"IO Single", "00100,01010,10001,00000", "200"},
+    {"IO Fill", "00100,01110,11111,00000", "200"},
     {"BACK", "00000", "0"}};
 
 // 15 - Roof Lights - Outside In
@@ -89,8 +90,8 @@ int RLOIMenuLength = 2;
 int RLOIMenuPosition = 0;
 bool RLOIInitialized = false;
 String RLOI[][3] = {
-    {"Outside In", "10001,01010,00100", "200"},
-    {"Outside In", "10001,01010,00100", "200"},
+    {"OI Single", "10001,01010,00100,00000", "200"},
+    {"OI Fill", "10001,11011,11111,00000", "200"},
     {"BACK", "00000", "0"}};
 
 // 2 - Under Glow
