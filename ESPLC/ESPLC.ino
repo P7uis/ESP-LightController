@@ -19,7 +19,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup(){
 
-    //Enable serial if debugging is on
+    //Enable serial
     Serial.begin(115200);
     
     // Initialize encoder pins
@@ -68,8 +68,22 @@ void loop(){
     // Show menu on display
     ESPLC_Display();
 
-    Serial.print("Roof light main pos: ");
+    /*
+    Serial.print("Main Menu Position: ");
+    Serial.println(MainMenuPosition);
+    Serial.print("RL Menu Position: ");
     Serial.println(RLMenuPosition);
+    Serial.print("Static Menu Position: ");
+    Serial.println(RLStaticMenuPosition);
+    Serial.print("Left Menu Position: ");
+    Serial.println(RLLeftMenuPosition);
+    Serial.print("Right Menu Position: ");
+    Serial.println(RLRightMenuPosition);
+    Serial.print("UG Menu Position: ");
+    Serial.println(UGMenuPosition);
+    Serial.print("Beacon Menu Position: ");
+    Serial.println(BeaconMenuPosition);
     Serial.print("Menu index: ");
     Serial.println(MenuIndex);
+    */
 }
