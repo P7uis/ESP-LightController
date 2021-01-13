@@ -45,23 +45,31 @@ void ESPLC_RotaryEncoder_Click()
     }
     // Check if in roof light static menu
     else if(MenuIndex == 11){
-        
-      RLInitialized = false;
-      RLStaticInitialized = true;
-      RLLeftInitialized = false;
-      RLRightInitialized = false;
-      RLIOInitialized = false;
-      RLOIInitialized = false;
-      RLArray = RLStatic[RLStaticMenuPosition][1];
-      RLDelay = RLStatic[RLStaticMenuPosition][2];
-      // Send structure over serial
-      SerialStructure();
+      
+      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
+      if (RLStaticMenuPosition == RLStaticMenuLength){
+        MenuIndex = 1;
+        // Reset position to 0 after switching menu
+        RLStaticMenuPosition = 0;
+      }
+      else{
+        RLInitialized = false;
+        RLStaticInitialized = true;
+        RLLeftInitialized = false;
+        RLRightInitialized = false;
+        RLIOInitialized = false;
+        RLOIInitialized = false;
+        RLArray = RLStatic[RLStaticMenuPosition][1];
+        RLDelay = RLStatic[RLStaticMenuPosition][2];
+        // Send structure over serial
+        SerialStructure();
 
-      // Reset static menu position
-      RLStaticMenuPosition = 0;
+        // Reset static menu position
+        RLStaticMenuPosition = 0;
 
-      // Exit to Rooflight menu on send (only with static sub menu)
-      MenuIndex = 1;
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
+      }
     }
     // Check if in roof light Left menu
     else if(MenuIndex == 12){
@@ -83,6 +91,12 @@ void ESPLC_RotaryEncoder_Click()
         RLDelay = RLLeft[RLLeftMenuPosition][2];
         // Send structure over serial
         SerialStructure();
+
+        // Reset static menu position
+        RLLeftMenuPosition = 0;
+
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
         
       }     
     }
@@ -104,6 +118,12 @@ void ESPLC_RotaryEncoder_Click()
         RLDelay = RLRight[RLRightMenuPosition][2];
         // Send structure over serial
         SerialStructure();
+
+        // Reset static menu position
+        RLRightMenuPosition = 0;
+
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
         
       }     
     }
@@ -127,6 +147,12 @@ void ESPLC_RotaryEncoder_Click()
         RLDelay = RLIO[RLIOMenuPosition][2];
         // Send structure over serial
         SerialStructure();
+
+        // Reset static menu position
+        RLIOMenuPosition = 0;
+
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
         
       }     
     }
@@ -150,6 +176,12 @@ void ESPLC_RotaryEncoder_Click()
         RLDelay = RLOI[RLOIMenuPosition][2];
         // Send structure over serial
         SerialStructure();
+
+        // Reset static menu position
+        RLOIMenuPosition = 0;
+
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
         
       }     
     }
