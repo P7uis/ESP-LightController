@@ -37,6 +37,7 @@ Een menu waar ik doorheen kan scrollen.
 
 ----Main menu----
 
+
 Rooflights (De standaard die boven midden staat zodra het systeem opgestart is.
 UnderGlow
 Beacon
@@ -44,7 +45,19 @@ leeg2
 leeg3
 
 
+
 ----Rooflights---- (Bij selecteren van een pattern moet er code gaan lopen om de lampen aan te sturen  maar allen als pin 12 LOW is(die moet ik nog testen). Zolang pin12 LOW is word de pattern verzonden. als pin 12 HIGH gezet word, word er eenmalig de uitcode verzonden en de pattern gestopt. Zodra pin 12 LOW is gaat de pattern code weer actief. de laatste selectie is dus opgeslagen in memory.)
+
+Static
+Knightrider
+Warning
+Inside out
+Outise in
+Left
+Right
+Back
+
+
 
 ON (met een selectie vraag waar een nummer tussen de 5 en 1 te kiezen is
 5	(Alle Lampen aan)
