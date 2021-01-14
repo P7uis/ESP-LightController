@@ -17,6 +17,11 @@
 // set LCD address, number of columns and rows
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
 
+// Mac adresses of beacon, extra relay and the undergrow
+uint8_t BeaconMac[] = {0xDC, 0x4F, 0x22, 0x58, 0x68, 0x36};
+uint8_t ExtraMac[] = {0x84, 0x0D, 0x8E, 0x97, 0x97, 0xFC};
+uint8_t UnderGlowMac[] = {0xB4, 0xE6, 0x2D, 0x97, 0x62, 0x1D};
+
 void setup(){
 
     //Enable serial
@@ -29,12 +34,45 @@ void setup(){
 
     //Initialize switch pins
     pinMode(RLSwitchPin, INPUT_PULLUP);
+    pinMode(BeaconSwitchPin, INPUT_PULLUP);
 
     // Initialize the LCD
     lcd.init();
 
     // Turn on the LCD backlight                      
     lcd.backlight();
+
+    WiFi.mode(WIFI_STA);
+ 
+    if (esp_now_init() != ESP_OK) {
+        //Serial.println("Error initializing ESP-NOW");
+        return;
+    }
+    
+    esp_now_register_send_cb(OnDataSent);
+    
+    // register peer
+    esp_now_peer_info_t peerInfo;
+    peerInfo.channel = 0;
+    peerInfo.encrypt = false;
+    // register first peer
+    memcpy(peerInfo.peer_addr, BeaconMac, 6);
+    if (esp_now_add_peer(&peerInfo) != ESP_OK){
+        //Serial.println("Failed to add peer");
+        return;
+    }
+    // register second peer
+    memcpy(peerInfo.peer_addr, ExtraMac, 6);
+    if (esp_now_add_peer(&peerInfo) != ESP_OK){
+        //Serial.println("Failed to add peer");
+        return;
+    }
+    /// register third peer
+    memcpy(peerInfo.peer_addr, UnderGlowMac, 6);
+    if (esp_now_add_peer(&peerInfo) != ESP_OK){
+        //Serial.println("Failed to add peer");
+        return;
+    }
 
     // Play startup tune (if you haven't disabled the jingle and decided to add code more code in the setup make sure to keep this last as an indicator of complete startup)
     ESPLC_Buzzer(0);
@@ -55,6 +93,7 @@ void loop(){
     PinB = digitalRead(EncoderPinB);
     PinC = digitalRead(EncoderPinC);
     RLSwitch = digitalRead(RLSwitchPin);
+    BeaconSwitch = digitalRead(BeaconSwitchPin);
 
     // Switch actions
     ESPLC_Switches();

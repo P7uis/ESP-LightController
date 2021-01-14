@@ -31,11 +31,6 @@ void ESPLC_RotaryEncoder_Click()
       else if (RLMenuPosition == RLMenuLength-1){ MenuIndex = 13;}
       else{
 
-        RLInitialized = true;
-        RLStaticInitialized = false;
-        RLLeftInitialized = false;
-        RLRightInitialized = false;
-
         RLArray = RoofLights[RLMenuPosition][1];
         RLDelay = RoofLights[RLMenuPosition][2];
         // Send structure over serial
@@ -53,12 +48,7 @@ void ESPLC_RotaryEncoder_Click()
         RLStaticMenuPosition = 0;
       }
       else{
-        RLInitialized = false;
-        RLStaticInitialized = true;
-        RLLeftInitialized = false;
-        RLRightInitialized = false;
-        RLIOInitialized = false;
-        RLOIInitialized = false;
+        
         RLArray = RLStatic[RLStaticMenuPosition][1];
         RLDelay = RLStatic[RLStaticMenuPosition][2];
         // Send structure over serial
@@ -81,12 +71,6 @@ void ESPLC_RotaryEncoder_Click()
         }
       else{
         
-        RLInitialized = false;
-        RLStaticInitialized = false;
-        RLLeftInitialized = true;
-        RLRightInitialized = false;
-        RLIOInitialized = false;
-        RLOIInitialized = false;
         RLArray = RLLeft[RLLeftMenuPosition][1];
         RLDelay = RLLeft[RLLeftMenuPosition][2];
         // Send structure over serial
@@ -110,10 +94,6 @@ void ESPLC_RotaryEncoder_Click()
         }
       else{
         
-        RLInitialized = false;
-        RLStaticInitialized = false;
-        RLLeftInitialized = false;
-        RLRightInitialized = true;
         RLArray = RLRight[RLRightMenuPosition][1];
         RLDelay = RLRight[RLRightMenuPosition][2];
         // Send structure over serial
@@ -137,12 +117,6 @@ void ESPLC_RotaryEncoder_Click()
         }
       else{
         
-        RLInitialized = false;
-        RLStaticInitialized = false;
-        RLLeftInitialized = false;
-        RLRightInitialized = false;
-        RLIOInitialized = true;
-        RLOIInitialized = false;
         RLArray = RLIO[RLIOMenuPosition][1];
         RLDelay = RLIO[RLIOMenuPosition][2];
         // Send structure over serial
@@ -166,12 +140,6 @@ void ESPLC_RotaryEncoder_Click()
         }
       else{
         
-        RLInitialized = false;
-        RLStaticInitialized = false;
-        RLLeftInitialized = false;
-        RLRightInitialized = false;
-        RLIOInitialized = false;
-        RLOIInitialized = true;
         RLArray = RLOI[RLOIMenuPosition][1];
         RLDelay = RLOI[RLOIMenuPosition][2];
         // Send structure over serial
@@ -214,15 +182,7 @@ void ESPLC_RotaryEncoder_Click()
         BeaconMenuPosition = 0;
       }
       else{
-        // Loop through the other options
-        switch (BeaconMenuPosition) {
-          case 1:
-            // TODO ON
-            break;
-          case 2:
-            // TODO OFF
-            break;
-        }
+        BeaconSender(BeaconMenuPosition);
       }
     }
     // Play a click sound

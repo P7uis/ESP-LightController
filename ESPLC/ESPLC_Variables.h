@@ -16,15 +16,23 @@ int PinC      = HIGH;
 int BUZZER_PIN = 16;
 int BUZZER_CHANNEL = 0;
 
-// Lights on/off switch pin
+// Lights on/off 
 int RLSwitchPin = 14;
-
-// Lights on/off switch pin
 int RLSwitch = HIGH;
-
-// Lights on/off boolean
 bool RLOnOff = false;
 String RLState = "0";
+
+// Beacon on/off  pin
+int BeaconSwitchPin = 12;
+int BeaconSwitch = HIGH;
+bool BeaconOnOff = false;
+String BeaconState = "0";
+
+// Under Glow on/off
+int UGSwitchPin = 27;
+int UGSwitchPin = HIGH;
+bool BeaconOnOff = false;
+String BeaconState = "0";
 
 // Indicator if screen has refreshed
 bool LCDRefresh = true;
@@ -38,5 +46,3 @@ unsigned long LastTick = 0;
 // Click Lock
 bool ClickLock = true;
 
-String RLArray;
-String RLDelay;

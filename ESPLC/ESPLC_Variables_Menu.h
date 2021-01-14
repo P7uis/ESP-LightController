@@ -32,7 +32,9 @@ int MainMenuPosition = 0;
 // 1 - Roof Lights
 int RLMenuLength = 7;
 int RLMenuPosition = 0;
-bool RLInitialized = false;
+
+String RLArray;
+String RLDelay;
 String RoofLights[][3] = {
     {"Static", "00000", "0"},
     {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
@@ -46,7 +48,6 @@ String RoofLights[][3] = {
 // 11 - Roof Lights - Static
 int RLStaticMenuLength = 5;
 int RLStaticMenuPosition = 0;
-bool RLStaticInitialized = false;
 String RLStatic[][3] = {
     {"1", "00100", "1000"},
     {"2", "10001", "1000"},
@@ -58,7 +59,6 @@ String RLStatic[][3] = {
 // 12 - Roof Lights - Left
 int RLLeftMenuLength = 3;
 int RLLeftMenuPosition = 0;
-bool RLLeftInitialized = false;
 String RLLeft[][3] = {
     {"1", "00001,00010,00100,01000,10000", "300"},
     {"2", "00001,00011,00110,01100,11000,10000", "300"},
@@ -68,7 +68,6 @@ String RLLeft[][3] = {
 // 13 - Roof Lights - Right
 int RLRightMenuLength = 3;
 int RLRightMenuPosition = 0;
-bool RLRightInitialized = false;
 String RLRight[][3] = {
     {"1", "10000,01000,00100,00010,00001", "300"},
     {"2", "10000,11000,01100,00110,00011,00001", "300"},
@@ -78,7 +77,6 @@ String RLRight[][3] = {
 // 14 - Roof Lights - Inside Out
 int RLIOMenuLength = 2;
 int RLIOMenuPosition = 0;
-bool RLIOInitialized = false;
 String RLIO[][3] = {
     {"IO Single", "00100,01010,10001,00000", "200"},
     {"IO Fill", "00100,01110,11111,00000", "200"},
@@ -87,7 +85,6 @@ String RLIO[][3] = {
 // 15 - Roof Lights - Outside In
 int RLOIMenuLength = 2;
 int RLOIMenuPosition = 0;
-bool RLOIInitialized = false;
 String RLOI[][3] = {
     {"OI Single", "10001,01010,00100,00000", "200"},
     {"OI Fill", "10001,11011,11111,00000", "200"},
@@ -97,9 +94,8 @@ String RLOI[][3] = {
 String UGMenuOptions[] = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "BACK"};
 int UGMenuLength = 10;
 int UGMenuPosition = 0;
-bool UGInitialized = false;
 
 // 3 - Beacon
-String BeaconMenuOptions[] = {"ON", "OFF", "BACK"};
+String BeaconMenuOptions[] = {"Beacon", "Extra Relay", "BACK"};
 int BeaconMenuLength = 2;
 int BeaconMenuPosition = 0;
