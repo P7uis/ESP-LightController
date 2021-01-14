@@ -9,7 +9,8 @@ void ESPLC_Switches()
         RLState = "1";
 
         // Send just the state instead of all other variables, i wonder why i sent them all in the first place
-        Serial.println("state" + RLState); 
+        Serial.println("state" + RLState);
+        delay(10); 
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
     else if (RLSwitch == HIGH && RLOnOff == true)
@@ -20,5 +21,6 @@ void ESPLC_Switches()
 
         // Send just the state 
         Serial.println("state" + RLState); 
+        delay(10);
     }
 }
