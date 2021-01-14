@@ -44,7 +44,7 @@ String RoofLights[][3] = {
     {"BACK", "00000", "0"}};
 
 // 11 - Roof Lights - Static
-int RLStaticMenuLength = 6;
+int RLStaticMenuLength = 5;
 int RLStaticMenuPosition = 0;
 bool RLStaticInitialized = false;
 String RLStatic[][3] = {
@@ -53,7 +53,6 @@ String RLStatic[][3] = {
     {"3", "10101", "1000"},
     {"4", "11011", "1000"},
     {"5", "11111", "1000"},
-    {"test", "10101", "1000"},
     {"BACK", "00000", "0"}};
 
 // 12 - Roof Lights - Left
