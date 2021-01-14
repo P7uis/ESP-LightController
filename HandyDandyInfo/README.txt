@@ -22,8 +22,8 @@ RotaryB	"2"	INPUT_PULLUP
 RotaryC "15"	INPUT_PULLUP
 
 Rooflight flipswitch "14" INPUT_PULLUP
-UnderGlow flipswitch "12" INPUT_PULLUP
-
+Beacon/Extra flipswitch "12" INPUT_PULLUP
+Underglow flipswitch "27" INPUT_PULLUP
 
 PIEZO buzzer "16"	OUTPUT
 
