@@ -1,41 +1,6 @@
 void ESPLC_Switches()
 {
-    // Set variables if one has already been selected before turning on the switch, if not variables are 0 aka off
-    if (RLInitialized)
-    {
-        RLArray = RoofLights[RLMenuPosition][1];
-        RLDelay = RoofLights[RLMenuPosition][2];
-    }
-    else if (RLStaticInitialized)
-    {
-        RLArray = RLStatic[RLStaticMenuPosition][1];
-        RLDelay = RLStatic[RLStaticMenuPosition][2];
-    }
-    else if (RLLeftInitialized)
-    {
-        RLArray = RLLeft[RLLeftMenuPosition][1];
-        RLDelay = RLLeft[RLLeftMenuPosition][2];
-    }
-    else if (RLRightInitialized)
-    {
-        RLArray = RLRight[RLRightMenuPosition][1];
-        RLDelay = RLRight[RLRightMenuPosition][2];
-    }
-    else if (RLIOInitialized)
-    {
-        RLArray = RLIO[RLIOMenuPosition][1];
-        RLDelay = RLIO[RLIOMenuPosition][2];
-    }
-    else if (RLOIInitialized)
-    {
-        RLArray = RLOI[RLOIMenuPosition][1];
-        RLDelay = RLOI[RLOIMenuPosition][2];
-    }
-    else
-    {
-        RLArray = "00000";
-        RLDelay = "00000";
-    }
+    
     // If switch is flipped on and current state is off, change the value to on and send it to the lightcontroller
     if (RLSwitch == LOW && RLOnOff == false)
     {
@@ -43,8 +8,8 @@ void ESPLC_Switches()
         RLOnOff = true;
         RLState = "1";
 
-        // Send structure over serial
-        SerialStructure();
+        // Send just the state instead of all other variables, i wonder why i sent them all in the first place
+        Serial.println("state" + RLState); 
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
     else if (RLSwitch == HIGH && RLOnOff == true)
@@ -53,7 +18,7 @@ void ESPLC_Switches()
         RLOnOff = false;
         RLState = "0";
 
-        // Send structure over serial
-        SerialStructure();
+        // Send just the state 
+        Serial.println("state" + RLState); 
     }
 }
