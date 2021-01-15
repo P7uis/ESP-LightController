@@ -30,9 +30,9 @@ String BeaconState = "0";
 
 // Under Glow on/off
 int UGSwitchPin = 27;
-int UGSwitch = HIGH;
-bool UGOnOff = false;
-String UGState = "0";
+int UGSwitchPin = HIGH;
+bool BeaconOnOff = false;
+String BeaconState = "0";
 
 // Indicator if screen has refreshed
 bool LCDRefresh = true;
@@ -45,3 +45,4 @@ unsigned long LastTick = 0;
 
 // Click Lock
 bool ClickLock = true;
+
