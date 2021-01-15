@@ -3,5 +3,5 @@
     "configuration": "PartitionScheme=default,FlashFreq=80,UploadSpeed=921600,DebugLevel=none",
     "port": "COM1",
     "sketch": "ESPLC\\ESPLC.ino",
-    "output:": "../../build"
+    "output:": "/Build"
 }

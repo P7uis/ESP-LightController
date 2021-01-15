@@ -19,9 +19,8 @@ void BeaconSender(int Beacon){
   BeaconStruct BeaconStructure;
   BeaconStructure.BeaconState = Beacon;
   
-  if (Beacon == 0){esp_err_t BeaconSend = esp_now_send( BeaconMac, (uint8_t *) &BeaconStructure, sizeof(BeaconStruct));}
-  else if (Beacon == 1){esp_err_t ExtraSend = esp_now_send( ExtraMac, (uint8_t *) &BeaconStructure, sizeof(BeaconStruct));}
-  
+  if (Beacon == 0){esp_err_t result = esp_now_send(0, (BeaconMac) &BeaconStructure, sizeof(BeaconStruct));}
+  else if (Beacon == 1){esp_err_t result = esp_now_send(0, (ExtraMac) &BeaconStructure, sizeof(BeaconStruct));}
   
   
   
