@@ -30,7 +30,7 @@ int MainMenuLength = 2;
 int MainMenuPosition = 0;
 
 // 1 - Roof Lights
-int RLMenuLength = 7;
+int RLMenuLength = 9;
 int RLMenuPosition = 0;
 
 String RLArray;
@@ -38,7 +38,9 @@ String RLDelay;
 String RoofLights[][3] = {
     {"Static", "00000", "0"},
     {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
+    {"Slow Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "400"},
     {"Warning", "10101,01010", "200"},
+    {"Slow Warning", "10101,01010", "500"},
     {"Inside Out", "00100,01010,10001", "200"},
     {"Outside In", "10001,01010,00100", "200"},
     {"Left", "00000", "0"},
