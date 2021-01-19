@@ -5,7 +5,7 @@
 #define N_A4  440
 #define N_D5  587
 
-int const TEMPO = 1200;
+int const TEMPO = 800;
 
 int melody[] = {
   N_D4, N_D4, N_D5, N_A4, 0, N_GS4, N_G4, N_F4, N_D4, N_F4, N_G4};

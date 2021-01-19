@@ -22,8 +22,11 @@ PIEZO buzzer "16"	OUTPUT
 
 NEO pixel led 1 pin "13"
 
+Day switch pin "34" INPUT_PULLUP
+Night switch pin "35" INPUT_PULLUP
 
-NEO pixels leds 2,3 pin "13" on UG ESP32
+
+NEO pixels leds 2,3 pin "??" on UG Wemos
 
 
 

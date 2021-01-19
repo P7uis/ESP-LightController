@@ -10,6 +10,9 @@
 // Library - WiFi
 #include <WiFi.h>
 
+// Neopixel library for the 1st led
+#include <Adafruit_NeoPixel.h>
+
 // Variables
 #include "ESPLC_Variables.h"
 #include "ESPLC_Variables_menu.h"
@@ -73,6 +76,8 @@ void setup(){
         //Serial.println("Failed to add peer");
         return;
     }
+
+    ESPLC_LED_SETUP();
 
     // Play startup tune (if you haven't disabled the jingle and decided to add code more code in the setup make sure to keep this last as an indicator of complete startup)
     ESPLC_Buzzer(0);
