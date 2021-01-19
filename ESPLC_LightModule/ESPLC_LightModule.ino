@@ -24,13 +24,13 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   State = ESPRS.ESPRelayArray.substring(0,1).toInt();
   if (State == 1)
   {
-      //TODO Turn on relay (also still need to define relay pin)
+      //TODO Turn on relay
 
       //DEBUG - turn on onboard led
       digitalWrite(SwitchPin, LOW);
   }
   else{
-      //TODO Turn off relay (also still need to define relay pin)
+      //TODO Turn off relay
 
       //DEBUG  - turn off onboard led
       digitalWrite(SwitchPin, HIGH);
