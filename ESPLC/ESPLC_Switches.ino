@@ -11,7 +11,7 @@ void ESPLC_Switches()
         // Send the state and array
         Serial.println("state" + RLState);
         delay(10); 
-        Serial.println("state" + RLArray);
+        Serial.println("array" + RLArray);
         delay(10); 
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
