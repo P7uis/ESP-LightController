@@ -3,9 +3,9 @@ void SerialStructure() {
   // Send structure over serial
 
   Serial.println("array" + RLArray);
-  delay(100);
+  delay(20);
   Serial.println("delay" + RLDelay);
-  delay(100);
+  delay(20);
   Serial.println("state" + RLState); 
 
 }
