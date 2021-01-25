@@ -28,6 +28,7 @@ int CountNext = 0;
 String MainMenuOptions[] = {"RoofLights", "UnderGlow", "Extra", "Beacon"};
 int MainMenuLength = 3;
 int MainMenuPosition = 0;
+String MainMenuSelection;
 
 // 1 - Roof Lights
 int RLMenuLength = 9;

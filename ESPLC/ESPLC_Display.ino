@@ -13,20 +13,40 @@ void ESPLC_Display()
       SelectionNext = MainMenuPosition + 1;
       if (SelectionNext > MainMenuLength)SelectionNext = 0;
 
+      MainMenuSelection = MainMenuOptions[MainMenuPosition];
+
+      // Edit main menu display variable if switched on/off and or is selected
+      // Rooflights
+      if(MainMenuPosition == 0 && RLOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+      // UnderGlow  
+      else if(MainMenuPosition == 1 && UGOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+      // Extra
+      else if(MainMenuPosition == 2){
+        if(BeaconOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+        if (BeaconInit && BeaconSelection == 0){MainMenuSelection = MainMenuSelection+"-On";}
+        else {MainMenuSelection = MainMenuSelection+"-Off";}
+      }
+      // Beacon
+      else if(MainMenuPosition == 3){
+        if(BeaconOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+        if (BeaconInit && BeaconSelection == 1){MainMenuSelection = MainMenuSelection+"-On";}
+        else {MainMenuSelection = MainMenuSelection+"-Off";}
+      }
+
       // Define starting position based on lenght of string and if it is even or odd
-      if (MainMenuOptions[MainMenuPosition].length() % 2)StartPosition = 16 / 2 - (MainMenuOptions[MainMenuPosition].length() + 1) / 2;
-      else StartPosition = 16 / 2 - MainMenuOptions[MainMenuPosition].length() / 2;
+      if (MainMenuSelection.length() % 2)StartPosition = 16 / 2 - (MainMenuSelection.length() + 1) / 2;
+      else StartPosition = 16 / 2 - MainMenuSelection.length() / 2;
 
       // Check if the string is longer than 16 (screens horizontal character limit) otherwise it will scroll through the words
-      if (MainMenuOptions[MainMenuPosition].length() < 16) {
+      if (MainMenuSelection.length() < 16) {
         lcd.setCursor(StartPosition, 0);
-        lcd.print(MainMenuOptions[MainMenuPosition]);
+        lcd.print(MainMenuSelection);
       }
       else{
         lcd.setCursor(0, 0);
-        lcd.print(MainMenuOptions[MainMenuPosition].substring(CountCurrent, CountCurrent + 16));
+        lcd.print(MainMenuSelection.substring(CountCurrent, CountCurrent + 16));
         CountCurrent++;
-        if (CountCurrent > MainMenuOptions[MainMenuPosition].length() - 16)CountCurrent = 0;
+        if (CountCurrent > MainMenuSelection.length() - 16)CountCurrent = 0;
       }
 
       // Previous Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words

@@ -39,4 +39,17 @@ void ESPLC_Switches()
         BeaconOnOff = false;
         if(BeaconInit){BeaconSender(BeaconSelection);}
     }
+
+    // If switch is flipped on and current state is off, change the value to on and send it to the lightcontroller
+    if (UGSwitch == LOW && UGOnOff == false)
+    {
+        UGOnOff = true;
+        // TODO add underglow support
+    }
+    // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
+    else if (UGSwitch == HIGH && UGOnOff == true)
+    {
+        UGOnOff = false;
+        // TODO add underglow support
+    }
 }
