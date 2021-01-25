@@ -54,12 +54,6 @@ void ESPLC_RotaryEncoder_Scroll()
         if(UGMenuPosition == UGMenuLength) UGMenuPosition = 0;
         else UGMenuPosition++; 
       }
-      // Check if in beacon menu
-      else if(MenuIndex == 3){
-        // Reset to 0 if already on the last one
-        if(BeaconMenuPosition == BeaconMenuLength) BeaconMenuPosition = 0;
-        else BeaconMenuPosition++; 
-      }
       // Play a scroll right sound
       ESPLC_Buzzer(2);
     }
@@ -113,12 +107,6 @@ void ESPLC_RotaryEncoder_Scroll()
         // Reset to last if already on the first one
         if(UGMenuPosition == 0) UGMenuPosition = UGMenuLength;
         else UGMenuPosition--; 
-      }
-      // Check if in beacon menu
-      if(MenuIndex == 3){
-        // Reset to last if already on the first one
-        if(BeaconMenuPosition == 0) BeaconMenuPosition = BeaconMenuLength;
-        else BeaconMenuPosition--; 
       }
       // Play a scroll left sound
       ESPLC_Buzzer(3);  

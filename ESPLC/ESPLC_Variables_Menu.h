@@ -25,8 +25,8 @@ int CountPrevious = 0;
 int CountNext = 0;
 
 // 0 - Main menu
-String MainMenuOptions[] = {"RoofLights", "UnderGlow", "Beacon"};
-int MainMenuLength = 2;
+String MainMenuOptions[] = {"RoofLights", "UnderGlow", "Extra", "Beacon"};
+int MainMenuLength = 3;
 int MainMenuPosition = 0;
 
 // 1 - Roof Lights
@@ -96,8 +96,3 @@ String RLOI[][3] = {
 String UGMenuOptions[] = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "BACK"};
 int UGMenuLength = 10;
 int UGMenuPosition = 0;
-
-// 3 - Beacon
-String BeaconMenuOptions[] = {"Beacon", "Extra Relay", "BACK"};
-int BeaconMenuLength = 2;
-int BeaconMenuPosition = 0;

@@ -26,7 +26,8 @@ String RLState = "0";
 int BeaconSwitchPin = 12;
 int BeaconSwitch = HIGH;
 bool BeaconOnOff = false;
-String BeaconState = "0";
+bool BeaconInit = false;
+int BeaconSelection = 0;
 
 // Under Glow on/off
 int UGSwitchPin = 27;

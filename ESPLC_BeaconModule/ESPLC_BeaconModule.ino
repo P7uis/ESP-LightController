@@ -2,27 +2,26 @@
 #include <espnow.h>
 
 // Make the same structure to receive data
-typedef struct ESPRelayStructure {
-  String ESPRelayArray;
-} ESPRelayStructure;
+typedef struct BeaconStruct{
+    int BeaconState;
+  } BeaconStruct;
 
-ESPRelayStructure ESPRS;
+BeaconStruct BeaconStructure;
 
 int State = 0;
 int SwitchPin = 0;
 
 // Callback function that will be executed when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
-  memcpy(&ESPRS, incomingData, sizeof(ESPRS));
+  memcpy(&BeaconStructure, incomingData, sizeof(BeaconStructure));
   // DEBUG - Variable logging
   Serial.print("Bytes received: ");
   Serial.println(len);
   Serial.print("State: ");
-  Serial.println(ESPRS.ESPRelayArray);
+  Serial.println(BeaconStructure.BeaconState);
 
-  // Get state of current light (need to adjust for every different module (0,1),(1,2),(2,3),(3,4),(4))
-  State = ESPRS.ESPRelayArray.substring(0,1).toInt();
-  if (State == 1)
+  // Turn of or on relay depending on state
+  if (BeaconStructure.BeaconState == 1)
   {
       // Turn on relay
       digitalWrite(SwitchPin, LOW);

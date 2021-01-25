@@ -421,58 +421,6 @@ void ESPLC_Display()
         if (CountNext > UGMenuOptions[SelectionNext].length() - 7)CountNext = 0;
       }
     }
-    //Check if in the beacon menu
-    else if(MenuIndex == 3){
-      // Define previous and next items indexes and reset if needed
-      SelectionPrevious = BeaconMenuPosition - 1;
-      if (SelectionPrevious < 0)SelectionPrevious = BeaconMenuLength;
-      SelectionNext = BeaconMenuPosition + 1;
-      if (SelectionNext > BeaconMenuLength)SelectionNext = 0;
-
-      // Define starting position based on lenght of string and if it is even or odd
-      if (BeaconMenuOptions[BeaconMenuPosition].length() % 2)StartPosition = 16 / 2 - (BeaconMenuOptions[BeaconMenuPosition].length() + 1) / 2;
-      else StartPosition = 16 / 2 - BeaconMenuOptions[BeaconMenuPosition].length() / 2;
-
-      // Check if the string is longer than 16 (screens horizontal character limit) otherwise it will scroll through the words
-      if (BeaconMenuOptions[BeaconMenuPosition].length() < 16) {
-        lcd.setCursor(StartPosition, 0);
-        lcd.print(BeaconMenuOptions[BeaconMenuPosition]);
-      }
-      else{
-        lcd.setCursor(0, 0);
-        lcd.print(BeaconMenuOptions[BeaconMenuPosition].substring(CountCurrent, CountCurrent + 16));
-        CountCurrent++;
-        if (CountCurrent > BeaconMenuOptions[BeaconMenuPosition].length() - 16)CountCurrent = 0;
-      }
-
-      // Previous Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words
-      if (BeaconMenuOptions[SelectionPrevious].length() < 8) {
-        lcd.setCursor(0, 1);
-        lcd.print(BeaconMenuOptions[SelectionPrevious]);
-      }
-      else{
-        lcd.setCursor(0, 1);
-        lcd.print(BeaconMenuOptions[SelectionPrevious].substring(CountPrevious, CountPrevious + 7));
-        CountPrevious++;
-        if (CountPrevious > BeaconMenuOptions[SelectionPrevious].length() - 7)CountPrevious = 0;
-      }
-
-      // The divider of the previous and next options
-      lcd.setCursor(7, 1);
-      lcd.print("<>");
-      
-      // Next Option - Check if the string is longer than 7 character (half of the bottom display) otherwise it will scroll through the words 
-      if (BeaconMenuOptions[SelectionNext].length() < 8) {
-        lcd.setCursor(16 - BeaconMenuOptions[SelectionNext].length(), 1);
-        lcd.print(BeaconMenuOptions[SelectionNext]);
-      }
-      else{
-        lcd.setCursor(9, 1);
-        lcd.print(BeaconMenuOptions[SelectionNext].substring(CountNext, CountNext + 7));
-        CountNext++;
-        if (CountNext > BeaconMenuOptions[SelectionNext].length() - 7)CountNext = 0;
-      }
-    }
     // Error message if the indexes aren't found
     else{
       lcd.setCursor(0, 0);

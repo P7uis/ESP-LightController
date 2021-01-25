@@ -1,4 +1,5 @@
-void SerialStructure() {
+void SerialStructure()
+{
 
   // Send structure over serial
 
@@ -6,30 +7,41 @@ void SerialStructure() {
   delay(20);
   Serial.println("delay" + RLDelay);
   delay(20);
-  Serial.println("state" + RLState); 
-
+  Serial.println("state" + RLState);
 }
 
-void BeaconSender(int Beacon){
+void BeaconSender(int Beacon)
+{
 
-  typedef struct BeaconStruct {
+  typedef struct BeaconStruct
+  {
     int BeaconState;
   } BeaconStruct;
 
   BeaconStruct BeaconStructure;
-  BeaconStructure.BeaconState = Beacon;
-  
-  if (Beacon == 0){esp_err_t BeaconSend = esp_now_send( BeaconMac, (uint8_t *) &BeaconStructure, sizeof(BeaconStruct));}
-  else if (Beacon == 1){esp_err_t ExtraSend = esp_now_send( ExtraMac, (uint8_t *) &BeaconStructure, sizeof(BeaconStruct));}
-  
-  
-  
-  
-  
+  // check if need to enable/disable
+  if (BeaconOnOff)
+  {
+    BeaconStructure.BeaconState = 1;
+  }
+  else
+  {
+    BeaconStructure.BeaconState = 0;
+  }
+
+  if (Beacon == 0)
+  {
+    esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+  }
+  else if (Beacon == 1)
+  {
+    esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+  }
 }
 
 // callback when data is sent
-void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
+{
   char macStr[18];
   Serial.print("Packet to: ");
   // Copies the sender mac address to a string

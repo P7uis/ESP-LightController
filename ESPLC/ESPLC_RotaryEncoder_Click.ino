@@ -8,8 +8,21 @@ void ESPLC_RotaryEncoder_Click()
 
     // Check if in main menu
     if(MenuIndex == 0){
+      // If Clicking on Extra
+      if(MainMenuPosition == 2){
+        BeaconSelection = 1;
+        BeaconInit = true;
+        BeaconSender(BeaconSelection);
+      }
+      // If Clicking on Beacon
+      else if(MainMenuPosition == 3){
+        BeaconSelection = 0;
+        BeaconInit = true;
+        BeaconSender(BeaconSelection);
+
+      }
       // Set the menu index of the position of the main menu + 1 because 0 in main menu is roof lights but in index it is the main menu again
-      MenuIndex = MainMenuPosition+1;
+      else {MenuIndex = MainMenuPosition+1;}
     }
     // Check if in roof light menu
     else if(MenuIndex == 1){
@@ -171,18 +184,6 @@ void ESPLC_RotaryEncoder_Click()
             // TODO preset 2 etc...
             break;
         }
-      }
-    }
-    // Check if in beacon menu
-    else if(MenuIndex == 3){
-      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
-      if (BeaconMenuPosition == BeaconMenuLength){
-        MenuIndex = 0;
-        // Reset position to 0 after switching menu
-        BeaconMenuPosition = 0;
-      }
-      else{
-        BeaconSender(BeaconMenuPosition);
       }
     }
     // Play a click sound
