@@ -10,14 +10,16 @@ void ESPLC_RotaryEncoder_Click()
     if(MenuIndex == 0){
       // If Clicking on Extra
       if(MainMenuPosition == 2){
-        BeaconSelection = 1;
         BeaconInit = true;
+        if(BeaconSelection != 1)BeaconSelection = 1;
+        else BeaconSelection = 99;
         BeaconSender(BeaconSelection);
       }
       // If Clicking on Beacon
       else if(MainMenuPosition == 3){
-        BeaconSelection = 0;
         BeaconInit = true;
+        if(BeaconSelection != 0)BeaconSelection = 0;
+        else BeaconSelection = 99;
         BeaconSender(BeaconSelection);
 
       }
