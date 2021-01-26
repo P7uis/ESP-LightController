@@ -10,17 +10,17 @@ void ESPLC_RotaryEncoder_Click()
     if(MenuIndex == 0){
       // If Clicking on Extra
       if(MainMenuPosition == 2){
-        BeaconInit = true;
-        if(BeaconSelection != 1)BeaconSelection = 1;
-        else BeaconSelection = 99;
-        BeaconSender(BeaconSelection);
+        BEInit = true;
+        if(!ExtraOnOff)ExtraOnOff = true;
+        else ExtraOnOff = false;
+        BeaconSender();
       }
       // If Clicking on Beacon
       else if(MainMenuPosition == 3){
-        BeaconInit = true;
-        if(BeaconSelection != 0)BeaconSelection = 0;
-        else BeaconSelection = 99;
-        BeaconSender(BeaconSelection);
+        BEInit = true;
+        if(!BeaconOnOff)BeaconOnOff = true;
+        else BeaconOnOff = false;
+        BeaconSender();
 
       }
       // Set the menu index of the position of the main menu + 1 because 0 in main menu is roof lights but in index it is the main menu again

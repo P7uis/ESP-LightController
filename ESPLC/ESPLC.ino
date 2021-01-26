@@ -37,7 +37,7 @@ void setup(){
 
     //Initialize switch pins
     pinMode(RLSwitchPin, INPUT_PULLUP);
-    pinMode(BeaconSwitchPin, INPUT_PULLUP);
+    pinMode(BESwitchPin, INPUT_PULLUP);
 
     // Initialize the LCD
     lcd.init();
@@ -98,7 +98,7 @@ void loop(){
     PinB = digitalRead(EncoderPinB);
     PinC = digitalRead(EncoderPinC);
     RLSwitch = digitalRead(RLSwitchPin);
-    BeaconSwitch = digitalRead(BeaconSwitchPin);
+    BESwitch = digitalRead(BESwitchPin);
 
     // Switch actions
     ESPLC_Switches();

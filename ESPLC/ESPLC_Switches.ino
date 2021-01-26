@@ -27,17 +27,17 @@ void ESPLC_Switches()
     }
 
     // If switch is flipped on and current state is off, change the value to on and send it to the lightcontroller
-    if (BeaconSwitch == LOW && BeaconOnOff == false)
+    if (BESwitch == LOW && BESwitchOnOff == false)
     {
-        BeaconOnOff = true;
+        BESwitchOnOff = true;
         // Send data if option has already been sent
-        if(BeaconInit){BeaconSender(BeaconSelection);}
+        if(BEInit){BeaconSender();}
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
-    else if (BeaconSwitch == HIGH && BeaconOnOff == true)
+    else if (BESwitch == HIGH && BESwitchOnOff == true)
     {
-        BeaconOnOff = false;
-        if(BeaconInit){BeaconSender(BeaconSelection);}
+        BESwitchOnOff = false;
+        if(BEInit){BeaconSender();}
     }
 
     // If switch is flipped on and current state is off, change the value to on and send it to the lightcontroller

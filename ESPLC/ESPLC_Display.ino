@@ -22,15 +22,15 @@ void ESPLC_Display()
       else if(MainMenuPosition == 1 && UGOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
       // Extra
       else if(MainMenuPosition == 2){
-        if (BeaconInit && BeaconSelection == 1){MainMenuSelection = MainMenuSelection+"-On";}
+        if (BEInit && ExtraOnOff){MainMenuSelection = MainMenuSelection+"-On";}
         else {MainMenuSelection = MainMenuSelection+"-Off";}
-        if(BeaconOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+        if(BESwitchOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
       }
       // Beacon
       else if(MainMenuPosition == 3){
-        if (BeaconInit && BeaconSelection == 0){MainMenuSelection = MainMenuSelection+"-On";}
+        if (BEInit && BeaconOnOff){MainMenuSelection = MainMenuSelection+"-On";}
         else {MainMenuSelection = MainMenuSelection+"-Off";}
-        if(BeaconOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
+        if(BESwitchOnOff){MainMenuSelection = "["+MainMenuSelection+"]";}
       }
 
       // Define starting position based on lenght of string and if it is even or odd

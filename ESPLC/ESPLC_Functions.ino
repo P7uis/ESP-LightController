@@ -10,7 +10,7 @@ void SerialStructure()
   Serial.println("state" + RLState);
 }
 
-void BeaconSender(int Beacon)
+void BeaconSender()
 {
 
   typedef struct BeaconStruct
@@ -19,23 +19,37 @@ void BeaconSender(int Beacon)
   } BeaconStruct;
 
   BeaconStruct BeaconStructure;
-  // check if need to enable/disable
-  if (BeaconOnOff)
+  // Check if main switch is off, this overwrites the menu selections
+  if (!BESwitchOnOff)
   {
-    BeaconStructure.BeaconState = 1;
+    BeaconStructure.BeaconState = 0;
+    esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
   }
   else
   {
-    BeaconStructure.BeaconState = 0;
-  }
-
-  if (Beacon == 0)
-  {
-    esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
-  }
-  else if (Beacon == 1)
-  {
-    esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    // Check if need to enable/disable the beacon
+    if (BeaconOnOff)
+    {
+      BeaconStructure.BeaconState = 1;
+      esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    }
+    else
+    {
+      BeaconStructure.BeaconState = 0;
+      esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    }
+    // Check if need to enable/disable the extra relay
+    if (ExtraOnOff)
+    {
+      BeaconStructure.BeaconState = 1;
+      esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    }
+    else
+    {
+      BeaconStructure.BeaconState = 0;
+      esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    }
   }
 }
 

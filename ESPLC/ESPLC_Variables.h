@@ -22,12 +22,13 @@ int RLSwitch = HIGH;
 bool RLOnOff = false;
 String RLState = "0";
 
-// Beacon on/off  pin
-int BeaconSwitchPin = 12;
-int BeaconSwitch = HIGH;
+// Beacon/extra on/off  pin
+int BESwitchPin = 12;
+int BESwitch = HIGH;
+bool BESwitchOnOff = false;
 bool BeaconOnOff = false;
-bool BeaconInit = false;
-int BeaconSelection = 0;
+bool ExtraOnOff = false;
+bool BEInit = false;
 
 // Under Glow on/off
 int UGSwitchPin = 27;
