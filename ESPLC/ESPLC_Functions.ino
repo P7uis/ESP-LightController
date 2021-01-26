@@ -51,6 +51,7 @@ void BeaconSender()
       esp_err_t ExtraSend = esp_now_send(ExtraMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
     }
   }
+  delay(20);
 }
 
 // callback when data is sent
