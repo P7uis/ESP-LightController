@@ -34,7 +34,7 @@ String MainMenuSelection;
 int RLMenuLength = 9;
 int RLMenuPosition = 0;
 
-String RLArray = "00000";
+String RLArray = "11111";
 String RLDelay;
 String RoofLights[][3] = {
     {"Static", "00000", "0"},
