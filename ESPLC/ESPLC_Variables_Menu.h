@@ -31,7 +31,7 @@ int MainMenuPosition = 0;
 String MainMenuSelection;
 
 // 1 - Roof Lights
-int RLMenuLength = 9;
+int RLMenuLength = 10;
 int RLMenuPosition = 0;
 
 String RLArray = "11111";
@@ -39,6 +39,7 @@ String RLDelay;
 String RoofLights[][3] = {
     {"Static", "00000", "0"},
     {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
+    {"Flash", "00000", "0"},
     {"Slow Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "400"},
     {"Warning", "10101,01010", "200"},
     {"Slow Warning", "10101,01010", "500"},
@@ -91,6 +92,17 @@ int RLOIMenuPosition = 0;
 String RLOI[][3] = {
     {"OI Single", "10001,01010,00100,00000", "200"},
     {"OI Fill", "10001,11011,11111,00000", "200"},
+    {"BACK", "00000", "0"}};
+
+// 16 - Roof Lights - Flash
+int RLFlashMenuLength = 5;
+int RLFlashMenuPosition = 0;
+String RLFlash[][3] = {
+    {"1", "00100,00000", "400"},
+    {"2", "10001,00000", "400"},
+    {"3", "10101,00000", "400"},
+    {"4", "11011,00000", "400"},
+    {"5", "11111,00000", "400"},
     {"BACK", "00000", "0"}};
 
 // 2 - Under Glow

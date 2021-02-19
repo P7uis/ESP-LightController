@@ -44,6 +44,8 @@ void ESPLC_RotaryEncoder_Click()
       else if (RLMenuPosition == RLMenuLength-2){MenuIndex = 12;}
       // If selected option is last index -1, move to right menu
       else if (RLMenuPosition == RLMenuLength-1){ MenuIndex = 13;}
+      // If selected option is the third index, move to flash menu
+      else if (RLMenuPosition == 2){ MenuIndex = 16;}
       else{
 
         RLArray = RoofLights[RLMenuPosition][1];
@@ -162,6 +164,29 @@ void ESPLC_RotaryEncoder_Click()
 
         // Reset static menu position
         RLOIMenuPosition = 0;
+
+        // Exit to Rooflight menu on send 
+        MenuIndex = 1;
+        
+      }     
+    }
+    // Check if in roof light Flash menu
+    else if(MenuIndex == 16){
+      // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
+      if (RLFlashMenuPosition == RLFlashMenuLength){
+        MenuIndex = 1;
+        // Reset position to 0 after switching menu
+        RLFlashMenuPosition = 0;
+        }
+      else{
+        
+        RLArray = RLFlash[RLFlashMenuPosition][1];
+        RLDelay = RLFlash[RLFlashMenuPosition][2];
+        // Send structure over serial
+        SerialStructure();
+
+        // Reset static menu position
+        RLFlashMenuPosition = 0;
 
         // Exit to Rooflight menu on send 
         MenuIndex = 1;
