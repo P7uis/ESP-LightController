@@ -35,7 +35,7 @@ int RLMenuLength = 10;
 int RLMenuPosition = 0;
 
 String RLArray = "11111";
-String RLDelay;
+String RLDelay = "100";
 String RoofLights[][3] = {
     {"Static", "00000", "0"},
     {"Knight Rider", "10000,01000,00100,00010,00001,00010,00100,01000", "100"},
