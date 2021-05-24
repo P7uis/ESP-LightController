@@ -206,9 +206,13 @@ void ESPLC_RotaryEncoder_Click()
         switch (UGMenuPosition) {
           case 1:
             // TODO preset 1
+            UGInit = true;
+            UGSender();
             break;
           case 2:
             // TODO preset 2 etc...
+            UGInit = true;
+            UGSender();
             break;
         }
       }

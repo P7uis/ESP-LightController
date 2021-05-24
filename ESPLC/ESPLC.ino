@@ -15,7 +15,7 @@
 
 // Variables
 #include "ESPLC_Variables.h"
-#include "ESPLC_Variables_menu.h"
+#include "ESPLC_Variables_Menu.h"
 
 // set LCD address, number of columns and rows
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
@@ -38,6 +38,7 @@ void setup(){
     //Initialize switch pins
     pinMode(RLSwitchPin, INPUT_PULLUP);
     pinMode(BESwitchPin, INPUT_PULLUP);
+    pinMode(UGSwitchPin, INPUT_PULLUP);
 
     // Initialize the LCD
     lcd.init();
@@ -99,6 +100,7 @@ void loop(){
     PinC = digitalRead(EncoderPinC);
     RLSwitch = digitalRead(RLSwitchPin);
     BESwitch = digitalRead(BESwitchPin);
+    UGSwitch = digitalRead(UGSwitchPin);
 
     // Switch actions
     ESPLC_Switches();

@@ -34,6 +34,7 @@ bool BEInit = false;
 int UGSwitchPin = 27;
 int UGSwitch = HIGH;
 bool UGOnOff = false;
+bool UGInit = false;
 String UGState = "0";
 
 // Indicator if screen has refreshed
@@ -47,4 +48,3 @@ unsigned long LastTick = 0;
 
 // Click Lock
 bool ClickLock = true;
-

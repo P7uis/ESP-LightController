@@ -48,11 +48,15 @@ void ESPLC_Switches()
     {
         UGOnOff = true;
         // TODO add underglow support
+        // Send data if option has already been sent
+        if(UGInit){UGSender();}
     }
     // If switch is flipped off and current state is on, change the value to off and send it to the lightcontroller
     else if (UGSwitch == HIGH && UGOnOff == true)
     {
         UGOnOff = false;
         // TODO add underglow support
+        // Send data if option has already been sent
+        if(UGInit){UGSender();}
     }
 }
