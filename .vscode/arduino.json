@@ -1,7 +1,7 @@
-{
-    "board": "esp32:esp32:lolin32",
-    "configuration": "FlashFreq=80,PartitionScheme=default,CPUFreq=240,UploadSpeed=921600",
-    "port": "COM1",
-    "sketch": "ESPLC\\ESPLC.ino",
-    "output:": "/Build"
-}
+    {
+        "board": "esp32:esp32:lolin32",
+        "configuration": "FlashFreq=80,PartitionScheme=default,CPUFreq=240,UploadSpeed=921600",
+        "port": "COM1",
+        "sketch": "ESPLC\\ESPLC.ino",
+        "output:": "/build"
+    }

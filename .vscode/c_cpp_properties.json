@@ -15,7 +15,19 @@
                 "C:\\Users\\massi\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\**",
                 "C:\\Users\\massi\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**"
             ],
-            "forcedInclude": [],
+            "forcedInclude": [
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_Buzzer.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_Display.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_Functions.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_LED.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_RotaryEncoder_Click.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_RotaryEncoder_Scroll.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC/ESPLC_Switches.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC_BeaconModule/ESPLC_BeaconModule.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC_Buffer/ESPLC_Buffer.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC_ExtraModule/ESPLC_ExtraModule.ino",
+                "/home/massi/Documents/GitHub/ESP-LightController/ESPLC_LightModule/ESPLC_LightModule.ino"
+            ],
             "defines": [
                 "USBCON"
             ],
