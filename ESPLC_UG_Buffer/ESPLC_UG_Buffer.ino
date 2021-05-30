@@ -9,12 +9,10 @@ uint8_t Light2[] = {0xBC, 0xDD, 0xC2, 0x51, 0xE5, 0xE6};
 long interval; 
 long currentMillis;
 long previousMillis = 0;
-long previousMillisSub = 0;
-long RGB1[] = {0,0,0};
-long RGB2[] = {0,0,0};
-long RGB3[] = {0,0,0};
+long RGBold[] = {random(0,256),random(0,256),random(0,256)};
+long RGBnew[] = {random(0,256),random(0,256),random(0,256)};
 int state = 0;
-int i = 0;
+int step = 5;
 
 //Structure example to send data
 //Must match the receiver structure
@@ -35,20 +33,20 @@ struct_message incomingReadings;
 
 // Callback when data is sent
 void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
-  Serial.print("Last Packet Send Status: ");
+  //Serial.print("Last Packet Send Status: ");
   if (sendStatus == 0){
-    Serial.println("Delivery success");
+    //Serial.println("Delivery success");
   }
   else{
-    Serial.println("Delivery fail");
+    //Serial.println("Delivery fail");
   }
 }
 
 // Callback when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   memcpy(&incomingReadings, incomingData, sizeof(incomingReadings));
-  Serial.print("Bytes received: ");
-  Serial.println(len);
+  //Serial.print("Bytes received: ");
+  //Serial.println(len);
   state = incomingReadings.state;
 }
  
@@ -82,41 +80,44 @@ void setup() {
 }
  
 void loop() {
-  if(state == 1){
-    interval = 1000; 
+  /*if(state == 1){ */
     currentMillis = millis();
-    if (currentMillis - previousMillis >= interval) {
+    if (currentMillis - previousMillis >= 100) {
       previousMillis = currentMillis;
-      if(i == 0){
-        RGB1[0] = random(0,256);
-        RGB1[1] = random(0,256);
-        RGB1[2] = random(0,256);
-        
-        RGB2[0] = random(0,256);
-        RGB2[1] = random(0,256);
-        RGB2[2] = random(0,256);
+      if(RGBold[0]+step >= RGBnew[0] && RGBold[1]+step >= RGBnew[1] && RGBold[2]+step >= RGBnew[2]){
+          RGBnew[0] = random(0,250);
+          RGBnew[1] = random(0,250);
+          RGBnew[2] = random(0,250);
+          Serial.println("----------------------------------------SWITCH-------------");
+      }
+        if(RGBold[0] < RGBnew[0]){RGBold[0] += step;}
+        else{RGBold[0] -= step;}
 
-        i = 1;
-        }
-      else if(i == 1){
-        RGB2[0] = random(0,256);
-        RGB2[1] = random(0,256);
-        RGB2[2] = random(0,256);
-        
-        RGB3[0] = random(0,256);
-        RGB3[1] = random(0,256);
-        RGB3[2] = random(0,256);
+        if(RGBold[1] < RGBnew[1]){RGBold[1] += step;}
+        else{RGBold[1] -= step;}
 
-        i = 0;
-        }
-    } 
-    if (currentMillis - previousMillisSub >= 50) {
-      previousMillisSub = currentMillis;
-      
-      RGBW.R = R;
-      RGBW.G = G;
-      RGBW.B = B;
+        if(RGBold[2] < RGBnew[2]){RGBold[2] += step;}
+        else{RGBold[2] -= step;}
+ 
+      RGBW.R = RGBold[0];
+      RGBW.G = RGBold[1];
+      RGBW.B = RGBold[2];
       RGBW.W = 0;
+      
+      
+          Serial.print("old ");
+          Serial.print(RGBold[0]);
+          Serial.print(" ");
+          Serial.print(RGBold[1]);
+          Serial.print(" ");
+          Serial.println(RGBold[2]);
+          Serial.print("new ");
+          Serial.print(RGBnew[0]);
+          Serial.print(" ");
+          Serial.print(RGBnew[1]);
+          Serial.print(" ");
+          Serial.println(RGBnew[2]);
+          /*
       Serial.print("R: ");
       Serial.println(RGBW.R);
       
@@ -127,12 +128,12 @@ void loop() {
       Serial.println(RGBW.B);
       
       Serial.print("W: ");
-      Serial.println(RGBW.W);
+      Serial.println(RGBW.W);*/
       esp_now_send(Light1, (uint8_t *) &RGBW, sizeof(RGBW));
       esp_now_send(Light2, (uint8_t *) &RGBW, sizeof(RGBW));
     }
-  }
-    
+  //}
+  /*  
   else{
     interval = 1000; 
     currentMillis = millis();
@@ -157,5 +158,5 @@ void loop() {
       esp_now_send(Light1, (uint8_t *) &RGBW, sizeof(RGBW));
       esp_now_send(Light2, (uint8_t *) &RGBW, sizeof(RGBW));
     }
-  }
+  }*/
 }
