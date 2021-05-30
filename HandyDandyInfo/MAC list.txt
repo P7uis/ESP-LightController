@@ -17,6 +17,10 @@ Lighst left to right when you sit in the car
 Beacon DC:4F:22:58:68:36
 Extra 84:0D:8E:97:97:FC
 
+UG Buffer Demo: DC:4F:22:1C:8D:2C
+UG L1: 2C:F4:32:66:D4:41
+UG L2: BC:DD:C2:51:E5:E6
+
 
 
 
