@@ -3,7 +3,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define LED_PIN D0
-#define LED_COUNT 1
+#define LED_COUNT 2
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -50,13 +50,15 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
 // Callback when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   memcpy(&incomingReadings, incomingData, sizeof(incomingReadings));
-  //Serial.print("Bytes received: ");
-  //Serial.println(len);
+  Serial.print("Bytes received: ");
+  Serial.println(len);
+  Serial.println(incomingReadings.state);
   state = incomingReadings.state;
   receive = true;
 }
  
 void setup() {
+  Serial.begin(115200);
 
   strip.begin();
   strip.show();
@@ -88,7 +90,7 @@ void setup() {
 }
  
 void loop() {
-  if(state == 1){ 
+  if(state == 0){ 
     currentMillis = millis();
     if (currentMillis - previousMillis >= 5) {
       previousMillis = currentMillis;
@@ -118,7 +120,7 @@ void loop() {
     }
   }
   
-  else{
+  else  {
     if(receive){
       RGBW.R = 0;
       RGBW.G = 0;
