@@ -5,7 +5,8 @@
 uint8_t Light1[] = {0x2C, 0xF4, 0xF32, 0x6, 0xD4, 0x41};
 uint8_t Light2[] = {0xBC, 0xDD, 0xC2, 0x51, 0xE5, 0xE6};
 
-// Updates DHT readings every 10 seconds
+
+const long timeout = 10000;
 long interval; 
 long currentMillis;
 long previousMillis = 0;

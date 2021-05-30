@@ -59,28 +59,28 @@ void UGSender()
 
   typedef struct UGStruct
   {
-    String UGState;
+    int UGState;
   } UGStruct;
 
   UGStruct UnderGlowStructure;
   // Check if main switch is off, this overwrites the menu selections
   if (!UGOnOff)
   {
-    UnderGlowStructure.UGState = "0";
-    //esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    UnderGlowStructure.UGState = 0;
+    esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
   }
   else
   {
     // Check if need to enable/disable the beacon
     if (UGOnOff)
     {
-      UnderGlowStructure.UGState = "1";
-      //esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+      UnderGlowStructure.UGState = UGMenuPosition+1;
+      esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
     }
     else
     {
-      UnderGlowStructure.UGState = "0";
-      //esp_err_t BeaconSend = esp_now_send(BeaconMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+      UnderGlowStructure.UGState = 0;
+      esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
     }
   }
   delay(20);
