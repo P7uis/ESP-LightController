@@ -67,12 +67,12 @@ void UGSender()
   if (!UGOnOff)
   {
     UnderGlowStructure.UGState = 0;
-    esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+    esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&UnderGlowStructure, sizeof(UGStruct));
   }
   else
   {
       UnderGlowStructure.UGState = UGMenuPosition+1;
-      esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&BeaconStructure, sizeof(BeaconStruct));
+      esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&UnderGlowStructure, sizeof(UGStruct));
   }
   delay(20);
 }
