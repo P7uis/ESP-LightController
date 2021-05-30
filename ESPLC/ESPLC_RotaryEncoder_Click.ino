@@ -198,23 +198,10 @@ void ESPLC_RotaryEncoder_Click()
        // If the selected option is the last one it will return to the main menu (assuming the "BACK" option is always last)
       if (UGMenuPosition == UGMenuLength){
         MenuIndex = 0;
-        // Reset position to 0 after switching menu
-        UGMenuPosition = 0;
       }
       else{
-        // Loop through the other options
-        switch (UGMenuPosition) {
-          case 1:
-            // TODO preset 1
             UGInit = true;
             UGSender();
-            break;
-          case 2:
-            // TODO preset 2 etc...
-            UGInit = true;
-            UGSender();
-            break;
-        }
       }
     }
     // Play a click sound

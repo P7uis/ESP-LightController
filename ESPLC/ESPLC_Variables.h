@@ -34,7 +34,7 @@ bool BEInit = false;
 int UGSwitchPin = 27;
 int UGSwitch = HIGH;
 bool UGOnOff = false;
-bool UGInit = false;
+bool UGInit = true;
 String UGState = "0";
 
 // Indicator if screen has refreshed

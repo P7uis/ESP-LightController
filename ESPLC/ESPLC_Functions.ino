@@ -66,14 +66,19 @@ void UGSender()
   // Check if main switch is off, this overwrites the menu selections
   if (!UGOnOff)
   {
-    UnderGlowStructure.UGState = 0;
+    UnderGlowStructure.UGState = 999;
     esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&UnderGlowStructure, sizeof(UGStruct));
   }
   else
   {
-      UnderGlowStructure.UGState = UGMenuPosition+1;
+     if (UGMenuLength -1 == UGMenuPosition){
+      UnderGlowStructure.UGState = 999;
+     }
+     else{
+      UnderGlowStructure.UGState = UGMenuPosition;}
       esp_err_t BeaconSend = esp_now_send(UnderGlowMac, (uint8_t *)&UnderGlowStructure, sizeof(UGStruct));
   }
+  
   delay(20);
 }
 
