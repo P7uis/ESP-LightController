@@ -106,6 +106,6 @@ String RLFlash[][3] = {
     {"BACK", "00000", "0"}};
 
 // 2 - Under Glow
-String UGMenuOptions[] = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "BACK"};
+String UGMenuOptions[] = {"Smooth Cycle", "Harsh Cycle", "Police ", "American Police", "Red", "Apple Green", "Blue", "Panda Yellow", "Purple", "White", "OFF", "BACK"};
 int UGMenuLength = 10;
 int UGMenuPosition = 0;

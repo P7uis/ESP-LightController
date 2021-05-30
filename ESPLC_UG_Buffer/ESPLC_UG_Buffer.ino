@@ -1,19 +1,23 @@
 #include <ESP8266WiFi.h>
 #include <espnow.h>
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN D0
+#define LED_COUNT 1
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 // REPLACE WITH THE MAC Address of your receiver 
-uint8_t Light1[] = {0x2C, 0xF4, 0xF32, 0x6, 0xD4, 0x41};
+uint8_t Light1[] = {0x2C, 0xF4, 0x32, 0x66, 0xD4, 0x41};
 uint8_t Light2[] = {0xBC, 0xDD, 0xC2, 0x51, 0xE5, 0xE6};
-
-
-const long timeout = 10000;
-long interval; 
+ 
 long currentMillis;
 long previousMillis = 0;
 long RGBold[] = {random(0,256),random(0,256),random(0,256)};
 long RGBnew[] = {random(0,256),random(0,256),random(0,256)};
 int state = 0;
-int step = 5;
+int step = 1;
+bool receive = true;
 
 //Structure example to send data
 //Must match the receiver structure
@@ -49,11 +53,14 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   //Serial.print("Bytes received: ");
   //Serial.println(len);
   state = incomingReadings.state;
+  receive = true;
 }
  
 void setup() {
-  // Init Serial Monitor
-  Serial.begin(115200);
+
+  strip.begin();
+  strip.show();
+  strip.setBrightness(50);
  
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
@@ -81,16 +88,15 @@ void setup() {
 }
  
 void loop() {
-  /*if(state == 1){ */
+  if(state == 1){ 
     currentMillis = millis();
-    if (currentMillis - previousMillis >= 100) {
+    if (currentMillis - previousMillis >= 5) {
       previousMillis = currentMillis;
       if(RGBold[0]+step >= RGBnew[0] && RGBold[1]+step >= RGBnew[1] && RGBold[2]+step >= RGBnew[2]){
           RGBnew[0] = random(0,250);
           RGBnew[1] = random(0,250);
           RGBnew[2] = random(0,250);
-          Serial.println("----------------------------------------SWITCH-------------");
-      }
+      } 
         if(RGBold[0] < RGBnew[0]){RGBold[0] += step;}
         else{RGBold[0] -= step;}
 
@@ -102,62 +108,28 @@ void loop() {
  
       RGBW.R = RGBold[0];
       RGBW.G = RGBold[1];
-      RGBW.B = RGBold[2];
+      RGBW.B = RGBold[2]; 
       RGBW.W = 0;
-      
-      
-          Serial.print("old ");
-          Serial.print(RGBold[0]);
-          Serial.print(" ");
-          Serial.print(RGBold[1]);
-          Serial.print(" ");
-          Serial.println(RGBold[2]);
-          Serial.print("new ");
-          Serial.print(RGBnew[0]);
-          Serial.print(" ");
-          Serial.print(RGBnew[1]);
-          Serial.print(" ");
-          Serial.println(RGBnew[2]);
-          /*
-      Serial.print("R: ");
-      Serial.println(RGBW.R);
-      
-      Serial.print("G: ");
-      Serial.println(RGBW.G);
-      
-      Serial.print("B: ");
-      Serial.println(RGBW.B);
-      
-      Serial.print("W: ");
-      Serial.println(RGBW.W);*/
       esp_now_send(Light1, (uint8_t *) &RGBW, sizeof(RGBW));
+      strip.setPixelColor(0, RGBW.R, RGBW.G, RGBW.B);
       esp_now_send(Light2, (uint8_t *) &RGBW, sizeof(RGBW));
+      strip.setPixelColor(1, RGBW.R, RGBW.G, RGBW.B);
+      strip.show();
     }
-  //}
-  /*  
+  }
+  
   else{
-    interval = 1000; 
-    currentMillis = millis();
-    if (currentMillis - previousMillis >= interval) {
-      previousMillis = currentMillis;
-      Serial.println("State off");
+    if(receive){
       RGBW.R = 0;
       RGBW.G = 0;
       RGBW.B = 0;
       RGBW.W = 0;
-      Serial.print("R: ");
-      Serial.println(RGBW.R);
-      
-      Serial.print("G: ");
-      Serial.println(RGBW.G);
-      
-      Serial.print("B: ");
-      Serial.println(RGBW.B);
-      
-      Serial.print("W: ");
-      Serial.println(RGBW.W);
       esp_now_send(Light1, (uint8_t *) &RGBW, sizeof(RGBW));
+      strip.setPixelColor(0, RGBW.R, RGBW.G, RGBW.B);
       esp_now_send(Light2, (uint8_t *) &RGBW, sizeof(RGBW));
+      strip.setPixelColor(1, RGBW.R, RGBW.G, RGBW.B);
+      strip.show();
+      receive = false;
     }
-  }*/
+  }
 }
