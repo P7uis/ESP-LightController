@@ -25,30 +25,9 @@ struct_rgbw RGBW;
 // Callback when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   memcpy(&RGBW, incomingData, sizeof(RGBW));
-
-  Serial.print("Bytes received: ");
-  Serial.println(len);
-
-  Serial.print("R: ");
-  Serial.println(RGBW.R);
-  
-  Serial.print("G: ");
-  Serial.println(RGBW.G);
-  
-  Serial.print("B: ");
-  Serial.println(RGBW.B);
-  
-  Serial.print("W: ");
-  Serial.println(RGBW.W);
-  
-  analogWrite(rpin, RGBW.R);
-  analogWrite(gpin, RGBW.G);
-  analogWrite(bpin, RGBW.B);
-  analogWrite(wpin, RGBW.W);
 }
  
 void setup() {
-  Serial.begin(9600);
 
   //initialize digital pin LED_BUILTIN as an output.
   //RED
