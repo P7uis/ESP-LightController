@@ -15,7 +15,7 @@ long currentMillis;
 long previousMillis = 0;
 long RGBold[] = {random(0,256),random(0,256),random(0,256)};
 long RGBnew[] = {random(0,256),random(0,256),random(0,256)};
-int state = 0;
+int state = 999;
 int step = 1;
 bool receive = true;
 
@@ -59,10 +59,7 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
  
 void setup() {
   Serial.begin(115200);
-
-  strip.begin();
-  strip.show();
-  strip.setBrightness(7);
+  ESPLC_LED_SETUP();
  
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
@@ -135,3 +132,9 @@ void loop() {
     }
   }
 }
+
+void ESPLC_LED_SETUP() {
+  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(7);
+}                                                                                         
