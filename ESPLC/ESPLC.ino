@@ -30,7 +30,6 @@ void setup(){
 
     //Enable serial
     Serial.begin(115200);
-    Serial.println("Hello?");
     
     // Initialize encoder pins
     pinMode(EncoderPinA, INPUT_PULLUP);

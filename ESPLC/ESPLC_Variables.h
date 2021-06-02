@@ -35,7 +35,7 @@ int UGSwitchPin = 27;
 int UGSwitch = HIGH;
 bool UGOnOff = false;
 bool UGInit = true;
-String UGState = "0";
+String UGState = "999";
 
 // Indicator if screen has refreshed
 bool LCDRefresh = true;
