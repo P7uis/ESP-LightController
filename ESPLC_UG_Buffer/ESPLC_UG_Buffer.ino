@@ -2,7 +2,7 @@
 #include <espnow.h>
 #include <Adafruit_NeoPixel.h>
 
-#define LED_PIN D0
+#define LED_PIN 12
 #define LED_COUNT 2
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
@@ -62,7 +62,7 @@ void setup() {
 
   strip.begin();
   strip.show();
-  strip.setBrightness(50);
+  strip.setBrightness(7);
  
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
